@@ -1,0 +1,6 @@
+{
+  "name": "germanywithprakhar - Study in Germany & Tech Consulting",
+  "description": "Official platform of germanywithprakhar by Prakhar Rajput (CS @ Uni Bremen). Expert 1-on-1 strategy calls, German university admissions guidance, and student life resources.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

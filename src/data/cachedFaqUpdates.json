@@ -1,0 +1,180 @@
+{
+  "lastUpdated": "2026-08-30T10:00:00.000Z",
+  "status": "synchronized",
+  "sources": [
+    "DAAD Official Press & Study in Germany (daad.de)",
+    "Make it in Germany Portal (make-it-in-germany.com)",
+    "Federal Foreign Office / Auswärtiges Amt (auswaertiges-amt.de)",
+    "APS India & German Embassy Directives (aps-india.info)"
+  ],
+  "items": [
+    {
+      "id": "adm-policy-1",
+      "category": "Admissions",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: August 2026",
+      "source": {
+        "name": "DAAD / Bavarian State Ministry of Science and Arts",
+        "url": "https://www.daad.de"
+      },
+      "question": "Are German universities beginning to charge non-EU international tuition fees (e.g. TUM and Baden-Württemberg)?",
+      "answer": "While public higher education remains 100% tuition-free across the vast majority of German federal states (including North Rhine-Westphalia, Lower Saxony, Hesse, Berlin, and Hamburg), two specific regions maintain non-EU tuition models. The state of Baden-Württemberg (KIT, Uni Stuttgart, Heidelberg) levies €1,500/semester for non-EU students. In Bavaria, following the Higher Education Innovation Act, TU Munich (TUM) charges €2,000–€6,000/semester for select programs. However, premier public research universities like RWTH Aachen, TU Berlin, Uni Bremen, FAU Erlangen-Nürnberg, and TU Dresden remain completely tuition-free.",
+      "keyTakeaway": "Check specific state regulations; 14 out of 16 German states continue to offer 100% tuition-free public degrees."
+    },
+    {
+      "id": "adm-policy-2",
+      "category": "Admissions",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: July 2026",
+      "source": {
+        "name": "Uni-Assist e.V. Digital Directive",
+        "url": "https://www.uni-assist.de"
+      },
+      "question": "How has the Uni-Assist preliminary evaluation (VPD) shifted with paperless digital uploads?",
+      "answer": "Uni-Assist has transitioned over 85% of partner member universities away from requiring physically certified paper dossiers sent via postal mail to Berlin. For most applicants possessing digital verification records (including Indian CBSE Digilocker and digital APS certificates with cryptographic QR signatures), you only need to upload clear color PDF scans through the MyAssist portal. Physical paper attestations are now only requested for specific flagged institutions or manual audit checks.",
+      "keyTakeaway": "Saves international postal courier fees; ensure your scanned PDF certificates are high resolution and uncropped."
+    },
+    {
+      "id": "adm-policy-3",
+      "category": "Admissions",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: June 2026",
+      "source": {
+        "name": "DAAD Higher Education Compass / KMK Guidelines",
+        "url": "https://www.hochschulkompass.de"
+      },
+      "question": "What is the updated stance on online English tests (Duolingo English Test) vs. IELTS/TOEFL for German admissions?",
+      "answer": "The KMK and German universities have tightened acceptance criteria post-pandemic. While Duolingo was temporarily accepted during 2021–2022, over 90% of top-tier public German universities (TU9 and U15 universities) currently mandate IELTS Academic (minimum 6.5–7.0 overall with no band under 6.0) or TOEFL iBT (minimum 90–100). Do not gamble your application cycle on Duolingo unless the university’s specific examination regulations (Prüfungsordnung) explicitly enumerate it.",
+      "keyTakeaway": "Stick to IELTS Academic or TOEFL iBT to ensure 100% acceptance across all German university faculties."
+    },
+    {
+      "id": "visa-policy-1",
+      "category": "Visa & APS",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: August 2026",
+      "source": {
+        "name": "APS India (German Embassy New Delhi)",
+        "url": "https://www.aps-india.info"
+      },
+      "question": "What is the current turnaround time for digital APS certificates and paperless courier protocols?",
+      "answer": "APS India issues exclusively digital cryptographic paperless certificates (DigiAPS) sent via secure email with verifiable QR code validation. The average turnaround time has stabilized at 3 to 6 weeks from receipt of online application fees, provided your college registrar responds swiftly to the verification email. Applicants who graduated from universities with verified online transcript portals (or Digilocker integration) report verification in as little as 14–20 business days.",
+      "keyTakeaway": "Digital APS with QR code is accepted directly by universities and VFS visa appointment systems."
+    },
+    {
+      "id": "visa-policy-2",
+      "category": "Visa & APS",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: September 2026",
+      "source": {
+        "name": "German Federal Foreign Office / Make it in Germany",
+        "url": "https://www.make-it-in-germany.com"
+      },
+      "question": "How do the new Skilled Immigration Act reforms and the Chancenkarte (Opportunity Card) impact students?",
+      "answer": "Under the upgraded German Skilled Immigration Act (Fachkräfteeinwanderungsgesetz), student visa holders enjoy enhanced flexibility. International students can now work up to 140 full days (or 280 half days) per calendar year—up from 120 full days. Furthermore, students holding the new points-based Opportunity Card (Chancenkarte) can take up secondary study preparation or trial employment (Probearbeit) up to 20 hours per week while seeking an academic admission spot.",
+      "keyTakeaway": "Increased legal working limits give students substantially greater financial independence."
+    },
+    {
+      "id": "visa-policy-3",
+      "category": "Visa & APS",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: July 2026",
+      "source": {
+        "name": "German Missions in India / VFS Global Portal",
+        "url": "https://india.diplo.de"
+      },
+      "question": "How does the VFS student visa appointment waitlist system operate for upcoming intake windows?",
+      "answer": "The German Missions in South Asia operate a streamlined waitlist system on the VFS portal for Category D student visas. When you register on the waitlist with your verified digital APS certificate number and unconditional admission letter, appointment slots are released in chronological batches. Peak wait times occur between July and September (for Winter Semester), reaching 4–7 weeks, whereas off-peak wait times are under 10 days. Always book your slot the day your admission letter is issued.",
+      "keyTakeaway": "Your APS certificate number is mandatory to unlock VFS student visa waitlist booking."
+    },
+    {
+      "id": "fin-policy-1",
+      "category": "Financial & Sperrkonto",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: August 2026",
+      "source": {
+        "name": "Federal Foreign Office (Auswärtiges Amt) Official Gazette",
+        "url": "https://www.auswaertiges-amt.de"
+      },
+      "question": "What is the exact mandated Blocked Account amount for 2026/2027 German student visa applications?",
+      "answer": "Following the 29th BAföG Amendment enacted by the German Federal Government, the statutory monthly subsistence requirement for students was indexed to €992 per month. For a standard 12-month National Student Visa application, the required total blocked deposit is €11,904 (plus any nominal setup buffer required by the escrow provider, usually €50–€100). Any visa application filed with the outdated amount (€11,208) will be issued an official Nachforderung (document request) causing processing delays.",
+      "keyTakeaway": "The statutory requirement is €992/month, totaling €11,904 for one academic year."
+    },
+    {
+      "id": "fin-policy-2",
+      "category": "Financial & Sperrkonto",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: July 2026",
+      "source": {
+        "name": "GKV-Spitzenverband & Techniker Krankenkasse (TK)",
+        "url": "https://www.tk.de"
+      },
+      "question": "What are the current statutory student health insurance contribution rates (GKV + Pflegeversicherung)?",
+      "answer": "For enrolled students under age 30, statutory health insurance (Krankenversicherung der Studenten - KVdS) is federally standardized across major statutory funds (TK, Barmer, DAK). The basic statutory health insurance is approximately €93.63/month plus fund-specific additional contribution (Zusatzbeitrag, e.g. 1.2% for TK ~ €10.87), combined with mandatory long-term care insurance (Pflegeversicherung) of approximately €32.48 (or €37.38 for childless students aged 23+). The total monthly premium comes to approximately €136–€142 per month.",
+      "keyTakeaway": "Budget approximately €136–€142/month for comprehensive statutory healthcare coverage."
+    },
+    {
+      "id": "fin-policy-3",
+      "category": "Financial & Sperrkonto",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: June 2026",
+      "source": {
+        "name": "Federal Ministry of the Interior & German Consular Regulations",
+        "url": "https://www.bmi.bund.de"
+      },
+      "question": "Can bank fixed deposits, stock portfolios, or parent affidavits be submitted in place of a Sperrkonto?",
+      "answer": "For the vast majority of non-EU applicants, a German Sperrkonto with an accredited provider is strictly non-negotiable. The only legally admissible alternatives recognized under § 68 AufenthG are: (1) a formal Formal Obligation (Verpflichtungserklärung) executed in person by a resident of Germany with verified disposable income at their local Ausländerbehörde, or (2) an official scholarship from recognized public funds (DAAD, Erasmus Mundus, Heinrich Böll Stiftung). Bank statements from your home country or parental affidavits are systematically rejected.",
+      "keyTakeaway": "Foreign bank statements or stock portfolios cannot substitute for an escrowed German Sperrkonto."
+    },
+    {
+      "id": "jobs-policy-1",
+      "category": "Jobs & Tech",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: August 2026",
+      "source": {
+        "name": "Federal Ministry of the Interior (BMI) Migration Directives",
+        "url": "https://www.make-it-in-germany.com"
+      },
+      "question": "What are the details of the expanded 140 full days / 280 half days legal work allowance?",
+      "answer": "Under the reformed immigration statutes, international students from third countries holding a § 16b residence permit are permitted to work 140 full days (or 280 half days of up to 4 hours each) per calendar year, increased from the previous 120/240 day limit. Furthermore, employment as an academic or student assistant (HiWi) at the university or affiliated research institute (Fraunhofer, Max Planck) is considered supplementary and does not count against your 140-day quota.",
+      "keyTakeaway": "Provides greater earning power; track your worked days in your employment calendar for tax audits."
+    },
+    {
+      "id": "jobs-policy-2",
+      "category": "Jobs & Tech",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: July 2026",
+      "source": {
+        "name": "BAMF & Make it in Germany (EU Blue Card Update)",
+        "url": "https://www.bamf.de"
+      },
+      "question": "What are the lowered salary thresholds for the EU Blue Card for STEM university graduates?",
+      "answer": "Germany drastically reduced the salary threshold for young professionals and university graduates entering bottleneck STEM occupations (MINT: Mathematics, Informatics, Natural Sciences, Technology). For new graduates, the gross annual salary threshold is set at 45.3% of the annual contribution assessment ceiling (approximately €41,041 gross per year). Given that average entry-level software engineer salaries in Germany range from €52,000 to €68,000, almost all tech master’s graduates qualify for an EU Blue Card immediately upon securing their first job.",
+      "keyTakeaway": "The ~€41,041 entry threshold makes transition to the EU Blue Card straightforward for tech grads."
+    },
+    {
+      "id": "jobs-policy-3",
+      "category": "Jobs & Tech",
+      "layer": "policy-update",
+      "badge": "Verified Policy Update",
+      "timestamp": "Updated: May 2026",
+      "source": {
+        "name": "Federal Employment Agency (Bundesagentur für Arbeit)",
+        "url": "https://www.arbeitsagentur.de"
+      },
+      "question": "Can international students perform freelance work (Freiberufler) or operate an online business in Germany?",
+      "answer": "By default, the § 16b student residence permit strictly states 'Selbständige Tätigkeit nicht gestattet' (Self-employment not permitted). International students may only work as salaried employees (Werkstudent, Minijob, or Praktikum). If you wish to freelance as a software consultant or content creator, you must submit a formal petition to your local Foreigners’ Registration Office (Ausländerbehörde) demonstrating that the activity will not interfere with or delay your academic degree completion.",
+      "keyTakeaway": "Freelancing requires express prior written approval from your local Ausländerbehörde."
+    }
+  ]
+}

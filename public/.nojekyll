@@ -1,0 +1,2 @@
+# .nojekyll bypasses Jekyll processing on GitHub Pages
+# This ensures files starting with an underscore (like Vite's _assets or _headers) are not ignored.

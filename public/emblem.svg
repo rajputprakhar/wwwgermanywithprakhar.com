@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Soft realistic drop shadow matching LOGO(1).png -->
+    <filter id="emblem-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" />
+      <feOffset dx="0" dy="5" result="offsetblur" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Subtle White/Silver & Gold Shading Gradients -->
+    <linearGradient id="whiteSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f1f5f9" />
+    </linearGradient>
+
+    <linearGradient id="goldLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="60%" stop-color="#FACC15" />
+      <stop offset="100%" stop-color="#EAB308" />
+    </linearGradient>
+
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#CA8A04" />
+    </linearGradient>
+
+    <linearGradient id="needleLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+    
+    <linearGradient id="needleDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+  </defs>
+
+  <g id="emblem" filter="url(#emblem-shadow)" transform="translate(0, 10)">
+    <!-- ============================================================== -->
+    <!-- 1. GRADUATION CAP (MORTARBOARD)                                -->
+    <!-- ============================================================== -->
+    <!-- Skull Cap Underside -->
+    <path d="M 148,92 Q 200,108 252,92 L 246,118 Q 200,132 154,118 Z" 
+          fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2.5" />
+    
+    <!-- Mortarboard Diamond (Perspective) -->
+    <polygon points="200,42 296,76 200,110 104,76" 
+             fill="url(#whiteSilver)" stroke="#e2e8f0" stroke-width="3" stroke-linejoin="round" />
+    
+    <!-- Mortarboard Center Button in Refined Gold -->
+    <ellipse cx="200" cy="76" rx="5.5" ry="4.5" fill="url(#goldLight)" stroke="#CA8A04" stroke-width="1" />
+    
+    <!-- Tassel Cord & Hanging Ribbon with Gold Accent -->
+    <path d="M 200,76 Q 242,82 272,98 L 272,148" 
+          fill="none" stroke="url(#goldLight)" stroke-width="3" stroke-linecap="round" />
+    <!-- Tassel Fringe Tip -->
+    <polygon points="268,148 276,148 279,166 265,166" 
+             fill="url(#goldAccent)" stroke="#A16207" stroke-width="1.2" />
+
+    <!-- ============================================================== -->
+    <!-- 2. COMPASS / GLOBE RING (Behind book & needle)                 -->
+    <!-- ============================================================== -->
+    <circle cx="200" cy="232" r="78" 
+            fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.95" />
+    <circle cx="200" cy="232" r="78" 
+            fill="none" stroke="url(#goldLight)" stroke-width="2" opacity="0.6" />
+
+    <!-- ============================================================== -->
+    <!-- 3. OPEN BOOK                                                   -->
+    <!-- ============================================================== -->
+    <!-- Left Page Outer Boundary -->
+    <path d="M 192,154 
+             C 154,156 104,150 62,168 
+             C 56,171 52,176 52,182 
+             L 52,306 
+             C 52,313 58,318 65,315 
+             C 106,298 156,304 192,311 
+             Z" 
+          fill="url(#whiteSilver)" stroke="#e2e8f0" stroke-width="3" stroke-linejoin="round" />
+
+    <!-- Left Page Inner Contour / Bevel line -->
+    <path d="M 180,176 
+             C 146,178 104,175 76,187 
+             L 76,294 
+             C 104,283 146,287 180,293 
+             Z" 
+          fill="none" stroke="#64748b" stroke-width="3.5" opacity="0.3" stroke-linejoin="round" />
+
+    <!-- Right Page Outer Boundary -->
+    <path d="M 208,154 
+             C 246,156 296,150 338,168 
+             C 344,171 348,176 348,182 
+             L 348,306 
+             C 348,313 342,318 335,315 
+             C 294,298 244,304 208,311 
+             Z" 
+          fill="url(#whiteSilver)" stroke="#e2e8f0" stroke-width="3" stroke-linejoin="round" />
+
+    <!-- Right Page Inner Contour / Bevel line -->
+    <path d="M 220,176 
+             C 254,178 296,175 324,187 
+             L 324,294 
+             C 296,283 254,287 220,293 
+             Z" 
+          fill="none" stroke="#64748b" stroke-width="3.5" opacity="0.3" stroke-linejoin="round" />
+
+    <!-- Book Bottom Thickness Edge (Fanned Pages) -->
+    <path d="M 52,306 C 104,328 156,321 200,341 C 244,321 296,328 348,306 L 348,316 C 296,338 244,331 200,351 C 156,331 104,338 52,316 Z" 
+          fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+
+    <!-- Book Center Spine Seam -->
+    <line x1="200" y1="156" x2="200" y2="346" stroke="#cbd5e1" stroke-width="2.5" />
+
+    <!-- ============================================================== -->
+    <!-- 4. DIAGONAL COMPASS NEEDLE                                     -->
+    <!-- Extending from bottom-left past top-right of book               -->
+    <!-- ============================================================== -->
+    <!-- Center Pivot Ring Housing -->
+    <circle cx="200" cy="232" r="20" fill="#ffffff" stroke="url(#goldLight)" stroke-width="3" />
+    <circle cx="200" cy="232" r="9" fill="#0f172a" />
+
+    <!-- Top-Right Needle (Light Facet) -->
+    <polygon points="200,232 192,214 334,116" 
+             fill="url(#needleLight)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" />
+    <!-- Top-Right Needle (Shaded Gold Facet) -->
+    <polygon points="200,232 214,240 334,116" 
+             fill="url(#goldLight)" stroke="#CA8A04" stroke-width="1.8" stroke-linejoin="round" />
+
+    <!-- Bottom-Left Needle (Light Facet) -->
+    <polygon points="200,232 208,250 82,334" 
+             fill="url(#needleLight)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" />
+    <!-- Bottom-Left Needle (Shaded Dark Silver Facet) -->
+    <polygon points="200,232 188,224 82,334" 
+             fill="url(#needleDark)" stroke="#94a3b8" stroke-width="1.8" stroke-linejoin="round" />
+
+    <!-- Center Pivot Pin with Gold Cap -->
+    <circle cx="200" cy="232" r="5" fill="url(#goldLight)" stroke="#A16207" stroke-width="1" />
+  </g>
+</svg>
