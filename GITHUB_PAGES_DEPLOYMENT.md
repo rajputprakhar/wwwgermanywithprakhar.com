@@ -66,3 +66,15 @@ If you encounter this error in your browser console:
 - **`.nojekyll` included**: Prevents GitHub Pages from filtering out critical bundle assets.
 - **Client-Side Persistence**: The Admin Portal, consulting lead bookings, and newsletter subscriptions persist in browser `localStorage`.
 - **Pre-Rendered Fallbacks**: Built-in curated dataset for the Top 5 most popular YouTube videos, German city cost calculators, and regulatory FAQ updates work out of the box without requiring runtime API servers.
+- **Automated XML Sitemap & robots.txt**: `npm run generate:sitemap` is bundled into `npm run build` and `npm run build:static`, generating `sitemap.xml` and `robots.txt` for `germanywithprakhar.com` with full image sitemap extensions.
+
+---
+
+## 🔍 Submitting to Google Search Console
+
+Once deployed to `germanywithprakhar.com`:
+1. Open [Google Search Console](https://search.google.com/search-console).
+2. Add your property `https://germanywithprakhar.com`.
+3. In the left navigation, click **Sitemaps**.
+4. Under **Add a new sitemap**, type `sitemap.xml` and click **Submit**.
+5. Your sitemap will be indexed immediately by Googlebot with all 11+ landing sections, calculators, and blog guides.

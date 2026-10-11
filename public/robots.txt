@@ -1,0 +1,6 @@
+# robots.txt for germanywithprakhar.com
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://germanywithprakhar.com/sitemap.xml

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://germanywithprakhar.com/</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://germanywithprakhar.com/logo.png</image:loc>
+      <image:title>germanywithprakhar Logo</image:title>
+      <image:caption>Official emblem and platform logo for germanywithprakhar by Prakhar Rajput</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://germanywithprakhar.com/image-for-website.jpg</image:loc>
+      <image:title>Prakhar Rajput - CS @ University of Bremen</image:title>
+      <image:caption>Prakhar Rajput, founder of germanywithprakhar and student mentor in Bremen, Germany</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?section=consulting</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?section=stories</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?tool=bavarian-grade-calculator</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?tool=cost-of-living-calculator</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?tool=admission-profile-evaluator</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?section=toolkit</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?post=bremen-5-things</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?w=800&auto=format&fit=crop&q=80</image:loc>
+      <image:title>5 Things I Wish I Knew Before Moving to Bremen</image:title>
+      <image:caption>Bremen student guide, semester ticket tips, and student jobs in Lower Saxony</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?post=german-visa-interview</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80</image:loc>
+      <image:title>Acing the German Student Visa Interview</image:title>
+      <image:caption>VFS and German Consulate interview preparation, blocked account proof, and motives</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?post=tech-portfolio-student</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80</image:loc>
+      <image:title>How to Build a Tech Portfolio as an International Student</image:title>
+      <image:caption>Landing Werkstudent and HiWi student developer positions in Germany</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://germanywithprakhar.com/?section=faq</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

@@ -20,7 +20,7 @@ import { VideoModal } from './components/VideoModal';
 import { AdminModal } from './components/AdminModal';
 import { ThemeProvider } from './context/ThemeContext';
 import { BlogPost, ConsultingService, ConsultationBooking, WaitlistEntry } from './types';
-import { INITIAL_BOOKINGS, INITIAL_WAITLIST, PERSONAL_INFO } from './data/siteData';
+import { INITIAL_BOOKINGS, INITIAL_WAITLIST, PERSONAL_INFO, BLOG_POSTS } from './data/siteData';
 
 export default function App() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -63,6 +63,36 @@ export default function App() {
       console.warn('Failed to save waitlist to localStorage', e);
     }
   }, [waitlist]);
+
+  // Handle URL deep links from sitemap or external links (?post=..., ?section=..., ?tool=...)
+  useEffect(() => {
+    try {
+      const searchParams = new URLSearchParams(window.location.search);
+      const postParam = searchParams.get('post') || searchParams.get('article');
+      const sectionParam = searchParams.get('section');
+      const toolParam = searchParams.get('tool');
+
+      if (postParam) {
+        const found = BLOG_POSTS.find((p) => p.id === postParam);
+        if (found) {
+          setSelectedPost(found);
+        }
+      } else if (sectionParam) {
+        const targetId = sectionParam === 'stories' ? 'testimonials' : sectionParam;
+        const el = document.getElementById(targetId);
+        if (el) {
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 120);
+        }
+      } else if (toolParam) {
+        const el = document.getElementById('tools');
+        if (el) {
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 120);
+        }
+      }
+    } catch {
+      // Safe fallback if window is unavailable
+    }
+  }, []);
 
   const handleOpenBooking = (_service?: ConsultingService) => {
     const consultingEl = document.getElementById('consulting');
