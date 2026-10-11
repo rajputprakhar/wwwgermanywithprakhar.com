@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   color-scheme: dark;
 }
@@ -9,6 +11,7 @@ body {
   background-color: #08090D;
   color: #F3F4F6;
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .font-mono {
@@ -44,4 +47,239 @@ body {
 .bg-radial-gradient {
   background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.05) 45%, transparent 70%);
 }
+
+/* Hide scrollbar for clean carousels while keeping scrollable */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ========================================================================= */
+/* DYNAMIC LIGHT THEME SYSTEM                                                */
+/* Activated whenever the document root does NOT contain the 'dark' class   */
+/* (or contains 'light'). Ensures all UI components adapt dynamically.       */
+/* ========================================================================= */
+
+html:not(.dark) {
+  color-scheme: light;
+}
+
+html:not(.dark) body {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+/* Root background elements */
+html:not(.dark) .bg-\[\#08090D\],
+html:not(.dark) .bg-\[\#090A0F\] {
+  background-color: #F8FAFC !important;
+}
+
+html:not(.dark) section.bg-\[\#090A0F\],
+html:not(.dark) section.bg-\[\#08090D\] {
+  background-color: #F8FAFC !important;
+}
+
+/* Primary Card Surfaces */
+html:not(.dark) .bg-\[\#0E111C\],
+html:not(.dark) .bg-\[\#0E111C\]\/80,
+html:not(.dark) .bg-\[\#0E111C\]\/90,
+html:not(.dark) .bg-\[\#111420\],
+html:not(.dark) .bg-\[\#111420\]\/70,
+html:not(.dark) .bg-\[\#111420\]\/90,
+html:not(.dark) .bg-\[\#161B26\],
+html:not(.dark) .bg-\[\#0F111A\],
+html:not(.dark) .bg-\[\#0D101C\] {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Secondary & Nested Surfaces */
+html:not(.dark) .bg-\[\#1A1F2E\],
+html:not(.dark) .bg-\[\#0A0C14\] {
+  background-color: #F1F5F9 !important;
+}
+
+/* Modals */
+html:not(.dark) .bg-\[\#0D0F18\],
+html:not(.dark) .bg-\[\#0D0F18\]\/95 {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Modal Backdrops */
+html:not(.dark) .bg-black\/80,
+html:not(.dark) .bg-black\/75,
+html:not(.dark) .bg-black\/70 {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+}
+
+/* Semi-transparent Dark Pills and Badges */
+html:not(.dark) .bg-white\/\[0\.02\],
+html:not(.dark) .bg-white\/\[0\.03\],
+html:not(.dark) .bg-white\/\[0\.04\],
+html:not(.dark) .bg-white\/\[0\.05\],
+html:not(.dark) .bg-white\/\[0\.06\],
+html:not(.dark) .bg-white\/\[0\.07\] {
+  background-color: #F1F5F9 !important;
+}
+
+html:not(.dark) .bg-white\/\[0\.08\],
+html:not(.dark) .bg-white\/\[0\.1\] {
+  background-color: #E2E8F0 !important;
+}
+
+/* Borders adapt to clean crisp slate */
+html:not(.dark) [class*="border-white\/"] {
+  border-color: #E2E8F0 !important;
+}
+
+html:not(.dark) .border-white\/5,
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/15,
+html:not(.dark) .border-white\/20,
+html:not(.dark) .border-white\/30,
+html:not(.dark) .border-gray-800,
+html:not(.dark) .border-gray-700 {
+  border-color: #E2E8F0 !important;
+}
+
+/* Typography Hierarchy in Light Mode */
+html:not(.dark) h1:not([class*="bg-clip-text"]),
+html:not(.dark) h2:not([class*="bg-clip-text"]),
+html:not(.dark) h3:not([class*="bg-clip-text"]),
+html:not(.dark) h4:not([class*="bg-clip-text"]) {
+  color: #0F172A !important;
+}
+
+/* Text white overrides (protecting button text, badges, and gradient text) */
+html:not(.dark) .text-white:not(button *):not(button):not([class*="bg-gradient"]):not([class*="from-"]):not([class*="bg-indigo-"]):not([class*="bg-blue-"]):not([class*="bg-red-"]):not([class*="bg-emerald-"]):not(.keep-white) {
+  color: #0F172A !important;
+}
+
+html:not(.dark) .text-gray-200 {
+  color: #1E293B !important;
+}
+
+html:not(.dark) .text-gray-300 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .text-gray-400 {
+  color: #475569 !important;
+}
+
+html:not(.dark) .text-gray-500 {
+  color: #64748B !important;
+}
+
+/* Accents with enhanced readability for Light Mode */
+html:not(.dark) .text-cyan-400 {
+  color: #0284C7 !important;
+}
+
+html:not(.dark) .text-cyan-300 {
+  color: #0369A1 !important;
+}
+
+html:not(.dark) .text-indigo-400 {
+  color: #4F46E5 !important;
+}
+
+html:not(.dark) .text-indigo-300 {
+  color: #4338CA !important;
+}
+
+html:not(.dark) .text-purple-400 {
+  color: #7C3AED !important;
+}
+
+html:not(.dark) .text-purple-300 {
+  color: #6D28D9 !important;
+}
+
+html:not(.dark) .text-emerald-400 {
+  color: #059669 !important;
+}
+
+html:not(.dark) .text-emerald-300 {
+  color: #047857 !important;
+}
+
+html:not(.dark) .text-amber-300 {
+  color: #B45309 !important;
+}
+
+html:not(.dark) .text-amber-400 {
+  color: #D97706 !important;
+}
+
+/* Header bar in Light Mode */
+html:not(.dark) header.bg-\[\#090A0F\]\/85 {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  border-bottom-color: #E2E8F0 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+html:not(.dark) nav.bg-\[\#111420\]\/70 {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+  border-color: #E2E8F0 !important;
+}
+
+html:not(.dark) nav a {
+  color: #475569 !important;
+}
+
+html:not(.dark) nav a:hover {
+  color: #0F172A !important;
+  background-color: #FFFFFF !important;
+}
+
+/* Form Controls & Inputs */
+html:not(.dark) input,
+html:not(.dark) select,
+html:not(.dark) textarea {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Background Grids & Ambient Glows */
+html:not(.dark) .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+}
+
+html:not(.dark) .bg-radial-gradient {
+  background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.08), rgba(56, 189, 248, 0.04) 45%, transparent 70%);
+}
+
+/* Scrollbars in Light Mode */
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Interactive Accordions and Cards in Student Tools & FAQs */
+html:not(.dark) [id^="scale-btn-"],
+html:not(.dark) [id^="faq-"] {
+  border-color: #E2E8F0;
+}
+
 

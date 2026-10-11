@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, Video, BookOpen, Layers, Menu, X, ArrowUpRight, GraduationCap, Globe2, Calculator } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/siteData';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavbarProps {
   onBookCallClick: () => void;
@@ -23,6 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Consulting', href: '#consulting' },
+    { name: 'Stories', href: '#testimonials' },
     { name: 'Calculators', href: '#tools' },
     { name: 'YouTube', href: '#youtube' },
     { name: 'Toolkit', href: '#toolkit' },
@@ -89,6 +91,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
               <span>YouTube</span>
             </a>
 
+            {/* Theme Toggle (Desktop) */}
+            <ThemeToggle id="nav-theme-toggle-desktop" />
+
             {/* Glowing CTA Button */}
             <motion.button
               whileHover={{ scale: 1.03 }}
@@ -108,6 +113,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
 
           {/* Mobile & Tablet Controls (< xl) */}
           <div className="flex xl:hidden items-center gap-2">
+            {/* Theme Toggle (Mobile Header) */}
+            <ThemeToggle id="nav-theme-toggle-mobile" />
+
             <button
               onClick={onBookCallClick}
               className="px-3.5 py-2 min-h-[40px] rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 flex items-center gap-1.5"
@@ -148,6 +156,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
                   </a>
                 ))}
               </div>
+
+              {/* Theme Toggle Switch Row */}
+              <div className="pt-1">
+                <ThemeToggle variant="switch" id="nav-theme-toggle-drawer" />
+              </div>
+
               <div className="pt-1 flex flex-col gap-3">
                 <button
                   onClick={() => {

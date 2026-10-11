@@ -17,6 +17,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/siteData';
+import { ThemeToggle } from './ThemeToggle';
 import { validateEmailClient } from '../lib/emailValidation';
 
 interface FooterProps {
@@ -229,6 +230,11 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
                 </a>
               </li>
               <li>
+                <a href="#testimonials" className="hover:text-cyan-400 transition-colors">
+                  Success Stories &amp; Student Admits
+                </a>
+              </li>
+              <li>
                 <a href="#tools" className="hover:text-cyan-400 transition-colors">
                   German Grade Converter (KMK) &amp; Cost Estimator
                 </a>
@@ -331,7 +337,7 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
         {/* Bottom Copyright Strip */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400 text-center sm:text-left">
           <p>© 2026 germanywithprakhar • Prakhar Rajput. All rights reserved.</p>
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1 text-[11px]">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-2 text-[11px]">
             <span>University of Bremen • Computer Science</span>
             <span className="hidden sm:inline">•</span>
             <button
@@ -340,6 +346,8 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
             >
               Book Strategy Call
             </button>
+            <span className="hidden sm:inline">•</span>
+            <ThemeToggle id="footer-theme-toggle" />
           </div>
         </div>
       </div>

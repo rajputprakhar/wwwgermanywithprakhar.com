@@ -8,6 +8,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutBento } from './components/AboutBento';
 import { Consulting } from './components/Consulting';
+import { TestimonialsSection } from './components/TestimonialsSection';
 import { StudentTools } from './components/StudentTools';
 import { YouTubeSection, BlogSection } from './components/ContentHub';
 import { ResourcesToolkit } from './components/ResourcesToolkit';
@@ -17,6 +18,7 @@ import { BookingModal } from './components/BookingModal';
 import { BlogModal } from './components/BlogModal';
 import { VideoModal } from './components/VideoModal';
 import { AdminModal } from './components/AdminModal';
+import { ThemeProvider } from './context/ThemeContext';
 import { BlogPost, ConsultingService, ConsultationBooking, WaitlistEntry } from './types';
 import { INITIAL_BOOKINGS, INITIAL_WAITLIST, PERSONAL_INFO } from './data/siteData';
 
@@ -102,8 +104,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#08090D] text-[#F3F4F6] relative selection:bg-indigo-500 selection:text-white">
-      {/* Global Background Ambient Grid & Radial Gradients */}
+    <ThemeProvider>
+      <div className="min-h-screen bg-[#08090D] text-[#F3F4F6] relative selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+        {/* Global Background Ambient Grid & Radial Gradients */}
       <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none z-0" />
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-radial-gradient pointer-events-none z-0" />
 
@@ -128,7 +131,10 @@ export default function App() {
           {/* 3. Consulting Services & Topmate.io Widget Replica */}
           <Consulting onOpenBookingModal={handleOpenBooking} />
 
-          {/* 4. Interactive Student Calculators (Bavarian Formula, Monthly Cost of Living, Profile Readiness) */}
+          {/* 4. Student Success Stories & University Admits (Horizontal Slider) */}
+          <TestimonialsSection onBookCallClick={() => handleOpenBooking()} />
+
+          {/* 5. Interactive Student Calculators (Bavarian Formula, Monthly Cost of Living, Profile Readiness) */}
           <StudentTools onBookCallClick={() => handleOpenBooking()} />
 
           {/* 5. Featured YouTube Video: Life in Germany & Tech */}
@@ -185,6 +191,7 @@ export default function App() {
         onDeleteBooking={handleDeleteBooking}
       />
     </div>
+    </ThemeProvider>
   );
 }
 

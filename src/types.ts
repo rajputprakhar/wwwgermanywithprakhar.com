@@ -42,6 +42,15 @@ export interface Testimonial {
   quote: string;
   country: string;
   avatar: string;
+  category?: 'tu9' | 'cs-ai' | 'aps-visa' | 'engineering';
+  admitBadge?: string;
+  intake?: string;
+  rating?: number;
+  homeCity?: string;
+  germanGrade?: string;
+  keyWin?: string;
+  mentorshipFocus?: string;
+  verifiedAdmit?: boolean;
 }
 
 export interface ConsultationBooking {
