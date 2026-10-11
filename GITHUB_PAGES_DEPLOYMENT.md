@@ -42,6 +42,24 @@ If you want to build locally and deploy the output:
 
 ---
 
+## 🚨 Troubleshooting "MIME type of application/octet-stream"
+
+If you encounter this error in your browser console:
+> *"Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "application/octet-stream". Strict MIME type checking is enforced for module scripts per HTML spec."*
+
+### Why this happens:
+1. **GitHub Pages Source is set to "Deploy from a branch" instead of "GitHub Actions"**:
+   When set to deploy from the `main` branch root, GitHub Pages serves the raw `/index.html` from the source repository, which contains `<script type="module" src="/src/main.tsx"></script>`. GitHub Pages does not recognise `.tsx` files and sends them as `application/octet-stream`.
+   **Fix**: Go to **Repository Settings** ➔ **Pages** ➔ **Source** ➔ select **GitHub Actions**.
+2. **Missing `.nojekyll`**:
+   Jekyll ignores folders starting with an underscore or fails to route assets properly without `.nojekyll`.
+   **Fix**: The workflow automatically places `.nojekyll` into `dist/`.
+3. **Asset 404s returning non-JS payloads**:
+   If an asset path 404s, some CDNs or reverse proxies (like Cloudflare) return error responses with `Content-Type: application/octet-stream`.
+   **Fix**: Setting `base: './'` in `vite.config.ts` ensures all asset paths are generated relatively.
+
+---
+
 ## ✨ Static Features Included
 - **Zero Server Dependency**: Works 100% on static file servers.
 - **Relative Path Routing (`base: './'`)**: Assets and links resolve correctly whether hosted at the root domain (`username.github.io`) or in a subpath repository (`username.github.io/repo-name/`).

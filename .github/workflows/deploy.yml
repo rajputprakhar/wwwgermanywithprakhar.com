@@ -37,6 +37,12 @@ jobs:
       - name: Build static website
         run: npm run build:static
 
+      - name: Prepare GitHub Pages files (.nojekyll, 404.html, CNAME)
+        run: |
+          touch ./dist/.nojekyll
+          cp ./dist/index.html ./dist/404.html
+          if [ -f CNAME ]; then cp CNAME ./dist/CNAME; fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
