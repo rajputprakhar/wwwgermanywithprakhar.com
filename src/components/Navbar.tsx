@@ -24,12 +24,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Consulting', href: '#consulting' },
-    { name: 'Stories', href: '#testimonials' },
     { name: 'Calculators', href: '#tools' },
     { name: 'YouTube', href: '#youtube' },
     { name: 'Toolkit', href: '#toolkit' },
     { name: 'Blog', href: '#blog' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'FAQ & News', href: '#faq' },
   ];
 
   return (

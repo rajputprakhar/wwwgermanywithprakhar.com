@@ -8,7 +8,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutBento } from './components/AboutBento';
 import { Consulting } from './components/Consulting';
-import { TestimonialsSection } from './components/TestimonialsSection';
 import { StudentTools } from './components/StudentTools';
 import { YouTubeSection, BlogSection } from './components/ContentHub';
 import { ResourcesToolkit } from './components/ResourcesToolkit';
@@ -161,10 +160,7 @@ export default function App() {
           {/* 3. Consulting Services & Topmate.io Widget Replica */}
           <Consulting onOpenBookingModal={handleOpenBooking} />
 
-          {/* 4. Student Success Stories & University Admits (Horizontal Slider) */}
-          <TestimonialsSection onBookCallClick={() => handleOpenBooking()} />
-
-          {/* 5. Interactive Student Calculators (Bavarian Formula, Monthly Cost of Living, Profile Readiness) */}
+          {/* 4. Interactive Student Calculators (Bavarian Formula, Monthly Cost of Living, Profile Readiness) */}
           <StudentTools onBookCallClick={() => handleOpenBooking()} />
 
           {/* 5. Featured YouTube Video: Life in Germany & Tech */}

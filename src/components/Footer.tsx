@@ -230,11 +230,6 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
                 </a>
               </li>
               <li>
-                <a href="#testimonials" className="hover:text-cyan-400 transition-colors">
-                  Success Stories &amp; Student Admits
-                </a>
-              </li>
-              <li>
                 <a href="#tools" className="hover:text-cyan-400 transition-colors">
                   German Grade Converter (KMK) &amp; Cost Estimator
                 </a>
@@ -256,7 +251,7 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
               </li>
               <li>
                 <a href="#faq" className="hover:text-cyan-400 transition-colors">
-                  Admissions &amp; Policy Tracker FAQ
+                  FAQ &amp; Live Trending News
                 </a>
               </li>
             </ul>

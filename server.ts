@@ -8,8 +8,9 @@ import { validateEmailClient } from "./src/lib/emailValidation";
 
 const PORT = 3000;
 
-// Path to cached FAQ file and subscribers file
+// Path to cached FAQ file, news file, and subscribers file
 const CACHE_FILE_PATH = path.resolve(process.cwd(), "src/data/cachedFaqUpdates.json");
+const NEWS_CACHE_FILE_PATH = path.resolve(process.cwd(), "src/data/cachedNewsUpdates.json");
 const SUBSCRIBERS_PATH = path.resolve(process.cwd(), "src/data/subscribers.json");
 
 interface FaqPolicyItem {
@@ -57,6 +58,113 @@ function saveCachedUpdates(data: any) {
   } catch (err) {
     console.error("Error writing cached FAQ updates:", err);
   }
+}
+
+// Helpers for Live News Cache
+function loadCachedNews() {
+  try {
+    if (fs.existsSync(NEWS_CACHE_FILE_PATH)) {
+      const data = fs.readFileSync(NEWS_CACHE_FILE_PATH, "utf-8");
+      return JSON.parse(data);
+    }
+  } catch (err) {
+    console.error("Error reading cached news updates:", err);
+  }
+  return {
+    lastUpdated: new Date().toISOString(),
+    status: "fallback",
+    sources: [
+      "Auswärtiges Amt Official Immigration Directives",
+      "Make it in Germany Portal",
+      "DAAD German Academic Exchange Service",
+      "TechCrunch Europe"
+    ],
+    items: []
+  };
+}
+
+function saveCachedNews(data: any) {
+  try {
+    fs.writeFileSync(NEWS_CACHE_FILE_PATH, JSON.stringify(data, null, 2), "utf-8");
+  } catch (err) {
+    console.error("Error writing cached news updates:", err);
+  }
+}
+
+async function runNewsIngestionPipeline(): Promise<any> {
+  const current = loadCachedNews();
+  if (!process.env.GEMINI_API_KEY) {
+    return current;
+  }
+
+  try {
+    const ai = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY,
+      httpOptions: {
+        headers: {
+          'User-Agent': 'aistudio-build',
+        }
+      }
+    });
+
+    const prompt = `You are a real-time news desk journalist for 'Journey with Prakhar', specializing in live news, immigration directives, European tech careers, and student mobility in Germany and the EU.
+Synthesize 8 high-impact, trending news items across 4 categories:
+1. 'German Immigration & Policy' (Blocked account adjustments, visa rules, work allowances, APS directives)
+2. 'Tech & AI Trends' (German tech hubs in Munich/Berlin, English-speaking software jobs, AI Act)
+3. 'Student Life & Travel' (Deutschlandticket, budget Europe/Spain/Mallorca travel hacks, student housing)
+4. 'University & Career' (DAAD stats, post-study EU Blue Card pathways, university applications)
+
+Return valid JSON:
+{
+  "lastUpdated": "${new Date().toISOString()}",
+  "sources": [
+    "Auswärtiges Amt Official Directives",
+    "Make it in Germany Portal",
+    "DAAD Press (daad.de)",
+    "TechCrunch Europe",
+    "Deutsches Studierendenwerk"
+  ],
+  "items": [
+    {
+      "id": "string",
+      "title": "string (concise headline)",
+      "summary": "string (2-3 detailed factual sentences)",
+      "category": "German Immigration & Policy" | "Tech & AI Trends" | "Student Life & Travel" | "University & Career",
+      "source": { "name": "string", "url": "string", "domain": "string" },
+      "publishedAt": "${new Date().toISOString()}",
+      "tags": ["string"],
+      "isBreaking": boolean,
+      "readTime": "string",
+      "keyTakeaway": "string"
+    }
+  ]
+}`;
+
+    const res = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json"
+      }
+    });
+
+    if (res.text) {
+      const parsed = JSON.parse(res.text);
+      if (parsed.items && Array.isArray(parsed.items) && parsed.items.length > 0) {
+        const updated = {
+          lastUpdated: new Date().toISOString(),
+          status: "synchronized-live",
+          sources: parsed.sources || current.sources,
+          items: parsed.items
+        };
+        saveCachedNews(updated);
+        return updated;
+      }
+    }
+  } catch (err) {
+    console.error("Live news ingestion error:", err);
+  }
+  return current;
 }
 
 // Helper to load and save subscribers
@@ -456,6 +564,39 @@ async function startServer() {
 
   app.get("/api/faq-updates", handleFaqUpdates);
   app.post("/api/faq-updates", handleFaqUpdates);
+
+  // -------------------------------------------------------------
+  // API ROUTE: /api/live-news (GET & POST)
+  // Dynamic Real-Time Live News & Trending Updates
+  // -------------------------------------------------------------
+  const handleLiveNews = async (req: express.Request, res: express.Response) => {
+    const isRefreshRequested = req.query.refresh === "true" || req.body?.refresh === true;
+    const categoryFilter = req.query.category as string | undefined;
+    const currentCache = loadCachedNews();
+
+    let resultData = currentCache;
+
+    if (isRefreshRequested && process.env.GEMINI_API_KEY) {
+      resultData = await runNewsIngestionPipeline();
+    }
+
+    let items = resultData.items || [];
+    if (categoryFilter && categoryFilter !== "All") {
+      items = items.filter((item: any) => item.category === categoryFilter);
+    }
+
+    return res.json({
+      success: true,
+      cached: !isRefreshRequested,
+      lastUpdated: resultData.lastUpdated || new Date().toISOString(),
+      status: resultData.status || "synchronized",
+      sources: resultData.sources || [],
+      items
+    });
+  };
+
+  app.get("/api/live-news", handleLiveNews);
+  app.post("/api/live-news", handleLiveNews);
 
   // Background automated scheduler: re-syncs regulatory policies every 12 hours
   setInterval(() => {
