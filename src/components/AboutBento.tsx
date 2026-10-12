@@ -208,7 +208,7 @@ export const AboutBento: React.FC = () => {
               </p>
 
               {/* Interactive Code Snippet / Pipeline Showcase */}
-              <div className="rounded-xl bg-[#080A10] border border-white/[0.08] p-4 font-mono text-xs overflow-hidden mb-6">
+              <div className="keep-dark rounded-xl bg-[#080A10] border border-white/[0.08] p-4 font-mono text-xs overflow-hidden mb-6 shadow-md">
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-white/[0.08] text-gray-400">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />

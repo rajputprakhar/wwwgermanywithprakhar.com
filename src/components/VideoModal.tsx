@@ -48,11 +48,16 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose, onBookC
           </button>
 
           {/* Video Title & Meta */}
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2.5 mb-3 text-xs font-mono">
             <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-red-500/20 text-red-400 font-bold">
               YOUTUBE FEATURED
             </span>
-            <span className="text-xs font-mono text-gray-400">{YOUTUBE_FEATURED.duration}</span>
+            <span className="text-gray-400">{YOUTUBE_FEATURED.duration}</span>
+            <span className="text-gray-600">•</span>
+            <span className="text-gray-300 flex items-center gap-1">
+              <Eye className="w-3.5 h-3.5 text-red-400" />
+              <span>12.4K views</span>
+            </span>
           </div>
 
           <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 pr-8 leading-snug">

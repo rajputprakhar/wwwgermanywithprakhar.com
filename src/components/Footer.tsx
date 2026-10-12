@@ -18,14 +18,11 @@ import {
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/siteData';
 import { ThemeToggle } from './ThemeToggle';
-import { validateEmailClient } from '../lib/emailValidation';
+import { validateEmailClient, verifyEmailWithAbstractApi } from '../lib/emailValidation';
 
 interface FooterProps {
   onBookCallClick: () => void;
 }
-
-// Strict RFC-compliant regex requiring local part, @, domain, and valid TLD extension
-const STRICT_EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
   const [email, setEmail] = useState('');
@@ -34,70 +31,57 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [deliverabilityInfo, setDeliverabilityInfo] = useState<string | null>(null);
 
+  /**
+   * Captures user email input, executes Abstract API email verification,
+   * inspects is_valid_format and deliverability fields, and updates UI with
+   * success or error message.
+   */
   const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
     setDeliverabilityInfo(null);
 
-    const trimmedEmail = email.trim().toLowerCase();
+    // 1. Grab email address from user input
+    const trimmedEmail = email.trim();
 
-    // 1. Strict regex verification (must contain @ and valid domain extension)
-    if (!trimmedEmail || !STRICT_EMAIL_PATTERN.test(trimmedEmail)) {
-      setErrorMessage('Please enter a valid email address.');
-      return;
-    }
-
-    // 2. Client-side additional validation (length, consecutive dots, disposable blacklist)
-    const clientValidation = validateEmailClient(trimmedEmail);
-    if (!clientValidation.isValid) {
-      setErrorMessage(clientValidation.error || 'Please enter a valid email address.');
+    if (!trimmedEmail) {
+      setErrorMessage('Please enter an email address.');
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // 3. Optional server-side API check if backend is running (e.g. dev/fullstack mode)
-      let registered = false;
-      try {
-        const res = await fetch('/api/newsletter/subscribe', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: trimmedEmail }),
-        });
+      // 2. Fetch data from Abstract API endpoint with secured API key
+      // Checks is_valid_format and deliverability fields in the response
+      const result = await verifyEmailWithAbstractApi(trimmedEmail);
 
-        if (res.ok) {
-          const data = await res.json();
-          if (data.success) {
-            registered = true;
-            if (data.domain) {
-              setDeliverabilityInfo(`Verified MX mail exchanger for @${data.domain}`);
-            }
-          }
-        }
-      } catch {
-        // Static hosting mode (e.g. GitHub Pages) where /api doesn't exist
-      }
+      // 3. If valid format and deliverable, proceed with success message
+      if (result.isValid) {
+        setDeliverabilityInfo(
+          result.deliverability 
+            ? `Status: ${result.deliverability} • Verified mail exchanger`
+            : 'Email format verified'
+        );
+        setSubscribed(true);
 
-      // If backend was unreachable or in static mode, store subscriber in localStorage
-      if (!registered) {
+        // Store subscriber in local storage
         try {
-          const existingSubscribers = JSON.parse(localStorage.getItem('gwp_subscribers') || '[]');
-          if (!existingSubscribers.includes(trimmedEmail)) {
-            existingSubscribers.push(trimmedEmail);
-            localStorage.setItem('gwp_subscribers', JSON.stringify(existingSubscribers));
+          const existing = JSON.parse(localStorage.getItem('gwp_subscribers') || '[]');
+          if (!existing.includes(trimmedEmail)) {
+            existing.push(trimmedEmail);
+            localStorage.setItem('gwp_subscribers', JSON.stringify(existing));
           }
         } catch {
-          // ignore localStorage error
+          // ignore storage error
         }
-        setDeliverabilityInfo(`Domain @${clientValidation.domain || 'verified'} format validated`);
+      } else {
+        // 4. Otherwise, alert the user that the email is incorrect
+        setErrorMessage(result.message || 'The email address is incorrect. Please check for typos.');
       }
-
-      setSubscribed(true);
-    } catch {
-      setErrorMessage('Something went wrong while registering your subscription. Please try again.');
+    } catch (err) {
+      console.error('Email verification error:', err);
+      setErrorMessage('The email address is incorrect or unreachable. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -113,19 +97,19 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
           {/* Brand & Newsletter Section (Cols 5) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center p-1.5 overflow-hidden">
+              <div className="brand-logo-container h-12 w-12 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center p-1.5 overflow-hidden transition-all shadow-sm">
                 <img
                   src="/logo.png"
                   alt="germanywithprakhar Logo"
-                  className="w-full h-full object-contain filter drop-shadow-sm"
+                  className="brand-logo-img w-full h-full object-contain filter drop-shadow-sm"
                   referrerPolicy="no-referrer"
                 />
               </div>
               <div>
-                <span className="font-bold text-lg text-white tracking-tight">
-                  germany<span className="text-cyan-400">with</span>prakhar
+                <span className="brand-title font-bold text-lg text-white tracking-tight transition-all">
+                  germany<span className="brand-accent text-cyan-400">with</span>prakhar
                 </span>
-                <span className="block text-xs font-mono text-gray-400">
+                <span className="brand-subtitle block text-xs font-mono text-gray-400 transition-colors">
                   by Prakhar Rajput • CS @ University of Bremen
                 </span>
               </div>

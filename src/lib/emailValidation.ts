@@ -101,3 +101,11 @@ export function validateEmailClient(rawEmail: string): EmailValidationResult {
     domain
   };
 }
+
+export { 
+  verifyEmailWithAbstractApi, 
+  handleEmailVerification,
+  type VerificationResult,
+  type AbstractEmailResponse 
+} from './abstractEmailService';
+

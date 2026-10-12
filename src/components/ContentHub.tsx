@@ -9,7 +9,9 @@ import {
   BookOpen, 
   Calendar,
   Volume2,
-  Tv
+  Tv,
+  RefreshCw,
+  Radio
 } from 'lucide-react';
 import { BLOG_POSTS } from '../data/siteData';
 import { BlogPost } from '../types';
@@ -26,7 +28,10 @@ export const YouTubeSection: React.FC<YouTubeSectionProps> = ({ onOpenVideoModal
     setSelectedVideo, 
     isLivePlayerActive, 
     setIsLivePlayerActive, 
-    channelInfo 
+    channelInfo,
+    isRefreshingStats,
+    refreshRealtimeViews,
+    lastViewCountUpdate
   } = useYouTube();
 
   return (
@@ -127,10 +132,19 @@ export const YouTubeSection: React.FC<YouTubeSectionProps> = ({ onOpenVideoModal
                     <Calendar className="w-3.5 h-3.5 text-gray-500" />
                     {selectedVideo.publishDate || 'Recent'}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    <Eye className="w-3.5 h-3.5 text-gray-500" />
-                    {selectedVideo.views || '1.6K+'} views
+                  
+                  {/* Real-time YouTube Data API v3 View Count */}
+                  <span className="flex items-center gap-1.5 text-gray-200">
+                    <Eye className="w-3.5 h-3.5 text-red-500" />
+                    <span className="font-semibold text-white">
+                      {formatViewCount(selectedVideo.viewCount ?? selectedVideo.views)}
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-red-500/15 text-red-400 border border-red-500/30">
+                      <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                      LIVE
+                    </span>
                   </span>
+
                   {selectedVideo.duration && (
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-gray-500" />
@@ -139,13 +153,26 @@ export const YouTubeSection: React.FC<YouTubeSectionProps> = ({ onOpenVideoModal
                   )}
                 </div>
 
-                <button
-                  onClick={onOpenVideoModal}
-                  className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 hover:underline"
-                >
-                  <Tv className="w-3.5 h-3.5" />
-                  <span>Open Theatre Mode</span>
-                </button>
+                <div className="flex items-center gap-3">
+                  {/* Refresh Real-Time View Count Button */}
+                  <button
+                    onClick={() => refreshRealtimeViews()}
+                    disabled={isRefreshingStats}
+                    title="Fetch real-time view count from YouTube Data API v3"
+                    className="text-xs font-mono text-gray-400 hover:text-white flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all cursor-pointer disabled:opacity-50"
+                  >
+                    <RefreshCw className={`w-3 h-3 text-red-400 ${isRefreshingStats ? 'animate-spin' : ''}`} />
+                    <span>{isRefreshingStats ? 'Updating...' : 'Sync Views'}</span>
+                  </button>
+
+                  <button
+                    onClick={onOpenVideoModal}
+                    className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 hover:underline cursor-pointer"
+                  >
+                    <Tv className="w-3.5 h-3.5" />
+                    <span>Open Theatre Mode</span>
+                  </button>
+                </div>
               </div>
 
               <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug mb-2">

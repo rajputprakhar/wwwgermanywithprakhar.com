@@ -236,11 +236,11 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
               onClick={() => setActiveView('news')}
               className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 cursor-pointer relative ${
                 activeView === 'news'
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-black shadow-lg shadow-cyan-500/30 font-bold'
+                  ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-600/30 font-bold'
                   : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
-              <Radio className={`w-4 h-4 ${activeView === 'news' ? 'text-black' : 'text-cyan-400'}`} />
+              <Radio className={`w-4 h-4 ${activeView === 'news' ? 'text-white' : 'text-cyan-400'}`} />
               <span>Section B: Today&apos;s News</span>
               
               {/* LIVE badge indicator */}

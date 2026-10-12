@@ -158,7 +158,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCallClick, onWatchVideoClick }
                   <div className="absolute inset-0 bg-gradient-to-t from-[#090A0F]/90 via-transparent to-black/20 pointer-events-none" />
 
                   {/* Top-right Instagram badge on photo */}
-                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-mono text-white flex items-center gap-1.5 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:border-transparent transition-all shadow-md">
+                  <div className="brand-handle-badge absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-mono text-white flex items-center gap-1.5 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:border-transparent transition-all shadow-md">
                     <Instagram className="w-3 h-3 text-pink-400 group-hover:text-white transition-colors" />
                     <span>@germanywithprakhar</span>
                   </div>

@@ -47,19 +47,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
             className="group flex items-center gap-2.5 focus:outline-none"
             aria-label="germanywithprakhar - Prakhar Rajput"
           >
-            <div className="relative h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center p-1 overflow-hidden group-hover:border-cyan-400/40 transition-colors">
+            <div className="brand-logo-container relative h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center p-1 overflow-hidden group-hover:border-cyan-400/40 transition-all shadow-sm">
               <img
                 src="/logo.png"
                 alt="germanywithprakhar Logo"
-                className="w-full h-full object-contain filter drop-shadow-sm group-hover:scale-105 transition-transform"
+                className="brand-logo-img w-full h-full object-contain filter drop-shadow-sm group-hover:scale-105 transition-transform"
                 referrerPolicy="no-referrer"
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold tracking-tight text-white text-base sm:text-lg group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-cyan-200 group-hover:to-indigo-300 transition-all">
-                germany<span className="text-cyan-400">with</span>prakhar
+              <span className="brand-title font-bold tracking-tight text-white text-base sm:text-lg transition-all">
+                germany<span className="brand-accent text-cyan-400">with</span>prakhar
               </span>
-              <span className="text-[11px] text-gray-400 font-mono hidden md:block">
+              <span className="brand-subtitle text-[11px] text-gray-400 font-mono hidden md:block transition-colors">
                 by Prakhar Rajput
               </span>
             </div>
@@ -140,9 +140,39 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="xl:hidden bg-[#0D0F18]/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden"
+            className="xl:hidden mobile-drawer bg-[#0D0F18]/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden"
           >
             <div className="px-4 sm:px-6 py-5 space-y-4 max-h-[calc(100vh-80px)] overflow-y-auto">
+              {/* Brand Header inside Mobile Drawer */}
+              <div className="flex items-center justify-between pb-3.5 border-b border-white/10">
+                <a
+                  href="#home"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="group flex items-center gap-2.5 focus:outline-none"
+                  aria-label="germanywithprakhar - Prakhar Rajput"
+                >
+                  <div className="brand-logo-container relative h-9 w-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center p-1 overflow-hidden shadow-sm">
+                    <img
+                      src="/logo.png"
+                      alt="germanywithprakhar Logo"
+                      className="brand-logo-img w-full h-full object-contain filter drop-shadow-sm"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="brand-title font-bold text-sm tracking-tight text-white">
+                      germany<span className="brand-accent text-cyan-400">with</span>prakhar
+                    </span>
+                    <span className="brand-subtitle text-[10px] text-gray-400 font-mono">
+                      by Prakhar Rajput
+                    </span>
+                  </div>
+                </a>
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                  CS @ Uni Bremen
+                </span>
+              </div>
+
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pb-4 border-b border-white/10">
                 {navLinks.map((link) => (
                   <a

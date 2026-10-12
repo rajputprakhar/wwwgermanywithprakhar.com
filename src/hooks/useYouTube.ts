@@ -1,5 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { YOUTUBE_RECENT_VIDEOS } from '../data/siteData';
+import { 
+  fetchYouTubeViewCount, 
+  fetchBatchYouTubeViewCounts, 
+  formatViewCountDisplay,
+  YouTubeVideoStats,
+  YOUTUBE_FEATURED_VIDEO_ID
+} from '../lib/youtubeService';
 
 export interface YouTubeVideo {
   id: string;
@@ -13,6 +20,7 @@ export interface YouTubeVideo {
   views?: string;
   publishDate?: string;
   description?: string;
+  likeCount?: number;
 }
 
 export const YOUTUBE_CHANNEL_INFO = {
@@ -26,7 +34,7 @@ export const YOUTUBE_CHANNEL_INFO = {
 
 /**
  * Cleanly formats real view count numbers:
- * e.g. 15340 -> "15K views", 2300000 -> "2.3M views", 9150 -> "9.1K views"
+ * e.g. 15340 -> "15.3K views", 2300000 -> "2.3M views", 9150 -> "9.2K views"
  */
 export function formatViewCount(rawViews: number | string | undefined): string {
   if (rawViews === undefined || rawViews === null || rawViews === '') {
@@ -58,19 +66,7 @@ export function formatViewCount(rawViews: number | string | undefined): string {
     }
   }
 
-  if (count >= 1_000_000) {
-    const formatted = (count / 1_000_000).toFixed(1).replace(/\.0$/, '');
-    return `${formatted}M views`;
-  }
-  if (count >= 10_000) {
-    const formatted = (count / 1_000).toFixed(0);
-    return `${formatted}K views`;
-  }
-  if (count >= 1_000) {
-    const formatted = (count / 1_000).toFixed(1).replace(/\.0$/, '');
-    return `${formatted}K views`;
-  }
-  return `${Math.round(count).toLocaleString()} views`;
+  return formatViewCountDisplay(count);
 }
 
 function parseDuration(durationStr: string): string {
@@ -86,16 +82,62 @@ function parseDuration(durationStr: string): string {
 export function useYouTube() {
   const [videos, setVideos] = useState<YouTubeVideo[]>(YOUTUBE_RECENT_VIDEOS.slice(0, 5));
   const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo>(YOUTUBE_RECENT_VIDEOS[0]);
+  const [currentVideoStats, setCurrentVideoStats] = useState<YouTubeVideoStats | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRefreshingStats, setIsRefreshingStats] = useState(false);
   const [isLivePlayerActive, setIsLivePlayerActive] = useState(false);
+  const [lastViewCountUpdate, setLastViewCountUpdate] = useState<string>('Just now');
 
+  // Request real-time view count for the active video using the fetchYouTubeViewCount API function
+  const updateRealtimeViewCountForVideo = useCallback(async (videoId: string) => {
+    setIsRefreshingStats(true);
+    try {
+      const stats = await fetchYouTubeViewCount(videoId);
+      setCurrentVideoStats(stats);
+      setLastViewCountUpdate(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
+
+      // Also update the video in the active videos array state
+      setVideos((prevVideos) =>
+        prevVideos.map((v) => {
+          if (v.id === videoId || v.youtubeId === videoId) {
+            return {
+              ...v,
+              viewCount: stats.viewCount,
+              views: stats.formattedViews,
+              likeCount: stats.likeCount ?? v.likeCount,
+            };
+          }
+          return v;
+        })
+      );
+
+      // Update selected video object state
+      setSelectedVideo((prev) => {
+        if (prev.id === videoId || prev.youtubeId === videoId) {
+          return {
+            ...prev,
+            viewCount: stats.viewCount,
+            views: stats.formattedViews,
+            likeCount: stats.likeCount ?? prev.likeCount,
+          };
+        }
+        return prev;
+      });
+    } catch (err) {
+      console.warn('Error updating real-time view count:', err);
+    } finally {
+      setIsRefreshingStats(false);
+    }
+  }, []);
+
+  // Initial load: Fetch top popular videos & real-time batch statistics
   useEffect(() => {
     let isMounted = true;
 
-    async function fetchTopPopularVideos() {
+    async function initializeYouTubeData() {
       setIsLoading(true);
       try {
-        // Step 1: Query backend popular videos endpoint (strict order=viewCount, maxResults=5)
+        // Step 1: Query backend popular videos endpoint
         const response = await fetch(
           `/api/youtube/popular?channelId=${encodeURIComponent(YOUTUBE_CHANNEL_INFO.channelId)}&order=viewCount&maxResults=5`
         );
@@ -116,67 +158,46 @@ export function useYouTube() {
                 viewCount: numericCount,
                 views: formatViewCount(numericCount > 0 ? numericCount : v.views),
                 publishDate: v.publishDate || 'Recent',
-                description: v.description || 'Watch authentic experiences and university guidance in Germany with Prakhar Rajput.'
+                description: v.description || 'Watch authentic experiences and university guidance in Germany with Prakhar Rajput.',
+                likeCount: v.likeCount
               };
             });
 
             if (isMounted && mappedVideos.length > 0) {
               setVideos(mappedVideos);
-              return;
+              setSelectedVideo(mappedVideos[0]);
             }
           }
         }
 
-        // Step 2: Direct YouTube Data API v3 fallback if a key is available in environment
-        const clientApiKey = (import.meta as any).env?.VITE_YOUTUBE_API_KEY;
-        if (clientApiKey) {
-          const searchUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${encodeURIComponent(YOUTUBE_CHANNEL_INFO.channelId)}&order=viewCount&maxResults=5&type=video&key=${clientApiKey}`;
-          const searchRes = await fetch(searchUrl);
+        // Step 2: Fetch real-time view counts for all videos via YouTube Data API v3 fetch function
+        const allVideoIds = YOUTUBE_RECENT_VIDEOS.map((v) => v.youtubeId || v.id);
+        const batchStats = await fetchBatchYouTubeViewCounts(allVideoIds);
 
-          if (searchRes.ok) {
-            const searchData = await searchRes.json();
-            const videoIds = (searchData.items || [])
-              .map((item: any) => item.id?.videoId)
-              .filter(Boolean);
-
-            if (videoIds.length > 0) {
-              const statsUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoIds.join(',')}&key=${clientApiKey}`;
-              const statsRes = await fetch(statsUrl);
-
-              if (statsRes.ok) {
-                const statsData = await statsRes.json();
-                const fetched: YouTubeVideo[] = (statsData.items || []).map((item: any) => {
-                  const rawCount = parseInt(item.statistics?.viewCount || '0', 10);
-                  return {
-                    id: item.id,
-                    youtubeId: item.id,
-                    title: item.snippet?.title || '',
-                    url: `https://www.youtube.com/watch?v=${item.id}`,
-                    thumbnail: item.snippet?.thumbnails?.maxres?.url || 
-                               item.snippet?.thumbnails?.high?.url || 
-                               `https://i.ytimg.com/vi/${item.id}/maxresdefault.jpg`,
-                    category: 'Popular Video',
-                    duration: parseDuration(item.contentDetails?.duration || ''),
-                    viewCount: rawCount,
-                    views: formatViewCount(rawCount),
-                    publishDate: item.snippet?.publishedAt ? new Date(item.snippet.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Recent',
-                    description: item.snippet?.description?.slice(0, 180) || ''
-                  };
-                });
-
-                fetched.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0));
-                const top5 = fetched.slice(0, 5);
-
-                if (isMounted && top5.length > 0) {
-                  setVideos(top5);
-                  return;
-                }
+        if (isMounted && Object.keys(batchStats).length > 0) {
+          setVideos((prevVideos) =>
+            prevVideos.map((v) => {
+              const videoKey = v.youtubeId || v.id;
+              const stat = batchStats[videoKey];
+              if (stat) {
+                return {
+                  ...v,
+                  viewCount: stat.viewCount,
+                  views: stat.formattedViews,
+                  likeCount: stat.likeCount ?? v.likeCount,
+                };
               }
-            }
+              return v;
+            })
+          );
+
+          const activeKey = selectedVideo.youtubeId || selectedVideo.id;
+          if (batchStats[activeKey]) {
+            setCurrentVideoStats(batchStats[activeKey]);
           }
         }
       } catch (err) {
-        console.debug('Dynamic YouTube popular videos fetch note: falling back to verified top 5 uploads', err);
+        console.debug('Dynamic YouTube popular videos fetch note: falling back to verified uploads', err);
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -184,21 +205,30 @@ export function useYouTube() {
       }
     }
 
-    fetchTopPopularVideos();
+    initializeYouTubeData();
 
     return () => {
       isMounted = false;
     };
   }, []);
 
+  // When user clicks/selects a different video, fetch its real-time stats
+  const selectVideoWithStats = useCallback((video: YouTubeVideo) => {
+    setSelectedVideo(video);
+    updateRealtimeViewCountForVideo(video.youtubeId || video.id);
+  }, [updateRealtimeViewCountForVideo]);
+
   return {
     videos,
     selectedVideo,
-    setSelectedVideo,
+    setSelectedVideo: selectVideoWithStats,
+    currentVideoStats,
     isLoading,
+    isRefreshingStats,
     isLivePlayerActive,
     setIsLivePlayerActive,
+    refreshRealtimeViews: () => updateRealtimeViewCountForVideo(selectedVideo.youtubeId || selectedVideo.id),
+    lastViewCountUpdate,
     channelInfo: YOUTUBE_CHANNEL_INFO,
   };
 }
-
