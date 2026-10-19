@@ -18,6 +18,8 @@ import { BlogModal } from './components/BlogModal';
 import { VideoModal } from './components/VideoModal';
 import { AdminModal } from './components/AdminModal';
 import { ThemeProvider } from './context/ThemeContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { ReadingProgressBar } from './components/ReadingProgressBar';
 import { BlogPost, ConsultingService, ConsultationBooking, WaitlistEntry } from './types';
 import { INITIAL_BOOKINGS, INITIAL_WAITLIST, PERSONAL_INFO, BLOG_POSTS } from './data/siteData';
 
@@ -134,13 +136,17 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[#08090D] text-[#F3F4F6] relative selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+      <ErrorBoundary>
+        <div className="min-h-screen bg-[#FAF8F5] dark:bg-[#08090D] text-slate-900 dark:text-[#F3F4F6] relative selection:bg-indigo-500 selection:text-white transition-colors duration-300">
         {/* Global Background Ambient Grid & Radial Gradients */}
       <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none z-0" />
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-radial-gradient pointer-events-none z-0" />
 
       {/* Main Content Area */}
       <div className="relative z-10">
+        {/* Reading Progress Indicator at top of screen */}
+        <ReadingProgressBar />
+
         {/* Navigation Bar */}
         <Navbar
           onBookCallClick={() => handleOpenBooking()}
@@ -217,6 +223,7 @@ export default function App() {
         onDeleteBooking={handleDeleteBooking}
       />
     </div>
+    </ErrorBoundary>
     </ThemeProvider>
   );
 }

@@ -153,7 +153,7 @@ export const CORE_JOURNEY_FAQS: FaqItem[] = [
     id: 'adm-3',
     category: 'Admissions & Visas',
     question: 'What is the Blocked Account (Sperrkonto) and what is the current statutory requirement?',
-    answer: 'A Sperrkonto is an escrow bank account that guarantees to the German government that an international student can cover subsistence, rent, and healthcare for at least one year. Following statutory BAföG indexing, the current requirement is €992 per month (€11,904 per year). Once you arrive in Germany and open a current checking account (Girokonto), your blocked account releases equal monthly installments on the 1st of each month.',
+    answer: 'A Sperrkonto is an escrow bank account that guarantees to the German government that an international student can cover subsistence, rent, and healthcare for at least one year. Following statutory BAföG indexing, the current requirement is €992 per month (€11,904 per year). You can set this up online with official providers like Expatrio (available in our Student Toolkit using personal referral link https://www.expatrio.com?f=prakharr2 with referral code prakharr2). Once you arrive in Germany and open a current checking account (Girokonto), your blocked account releases equal monthly installments on the 1st of each month.',
     keyTakeaway: 'Mandatory visa requirement: €11,904 escrowed annually, disbursed in equal monthly payments of €992.',
     tags: ['Blocked Account', 'Sperrkonto', 'Living Costs']
   },

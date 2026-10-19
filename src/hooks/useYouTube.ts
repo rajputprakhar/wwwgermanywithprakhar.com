@@ -4,6 +4,9 @@ import {
   fetchYouTubeViewCount, 
   fetchBatchYouTubeViewCounts, 
   formatViewCountDisplay,
+  formatPublishedDate,
+  getCachedYouTubeData,
+  setCachedYouTubeData,
   YouTubeVideoStats,
   YOUTUBE_FEATURED_VIDEO_ID
 } from '../lib/youtubeService';
@@ -19,16 +22,20 @@ export interface YouTubeVideo {
   viewCount?: number;
   views?: string;
   publishDate?: string;
+  publishedAt?: string;
   description?: string;
   likeCount?: number;
 }
 
 export const YOUTUBE_CHANNEL_INFO = {
-  handle: '@prakhar.rajput',
+  handle: '@PrakharRajput',
+  displayName: 'Journey with Prakhar',
   channelId: 'UC3YMsynPRyw5xqZ-Xl-66Sw',
-  channelUrl: 'https://www.youtube.com/@prakhar.rajput',
+  channelUrl: 'https://www.youtube.com/@prakhar.rajput?sub_confirmation=1',
   videosPageUrl: 'https://www.youtube.com/@prakhar.rajput/videos',
-  subscribers: '1.6K+',
+  avatarUrl: '/image for website.jpg',
+  subscribers: '1.6K+ subscribers',
+  subscribersCount: '1.6K+',
   verified: true,
 };
 
@@ -69,26 +76,39 @@ export function formatViewCount(rawViews: number | string | undefined): string {
   return formatViewCountDisplay(count);
 }
 
-function parseDuration(durationStr: string): string {
-  const match = durationStr.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  if (!match) return '10:00';
-  const h = match[1] ? parseInt(match[1], 10) : 0;
-  const m = match[2] ? parseInt(match[2], 10) : 0;
-  const s = match[3] ? parseInt(match[3], 10) : 0;
-  if (h > 0) return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-  return `${m}:${String(s).padStart(2, '0')}`;
-}
+const CACHE_KEY_POPULAR = 'channel_popular_videos';
 
 export function useYouTube() {
-  const [videos, setVideos] = useState<YouTubeVideo[]>(YOUTUBE_RECENT_VIDEOS.slice(0, 5));
-  const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo>(YOUTUBE_RECENT_VIDEOS[0]);
+  // Initialize with cached videos if available within TTL for zero-delay hydration
+  const [videos, setVideos] = useState<YouTubeVideo[]>(() => {
+    const cached = getCachedYouTubeData<YouTubeVideo[]>(CACHE_KEY_POPULAR);
+    if (cached && Array.isArray(cached) && cached.length > 0) {
+      return cached;
+    }
+    return YOUTUBE_RECENT_VIDEOS.slice(0, 5).map((v) => ({
+      ...v,
+      publishDate: formatPublishedDate(v.publishDate)
+    }));
+  });
+
+  const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo>(() => {
+    const cached = getCachedYouTubeData<YouTubeVideo[]>(CACHE_KEY_POPULAR);
+    if (cached && Array.isArray(cached) && cached.length > 0) {
+      return cached[0];
+    }
+    return {
+      ...YOUTUBE_RECENT_VIDEOS[0],
+      publishDate: formatPublishedDate(YOUTUBE_RECENT_VIDEOS[0].publishDate)
+    };
+  });
+
   const [currentVideoStats, setCurrentVideoStats] = useState<YouTubeVideoStats | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshingStats, setIsRefreshingStats] = useState(false);
   const [isLivePlayerActive, setIsLivePlayerActive] = useState(false);
   const [lastViewCountUpdate, setLastViewCountUpdate] = useState<string>('Just now');
 
-  // Request real-time view count for the active video using the fetchYouTubeViewCount API function
+  // Request real-time view count for the active video
   const updateRealtimeViewCountForVideo = useCallback(async (videoId: string) => {
     setIsRefreshingStats(true);
     try {
@@ -96,7 +116,9 @@ export function useYouTube() {
       setCurrentVideoStats(stats);
       setLastViewCountUpdate(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
 
-      // Also update the video in the active videos array state
+      const formattedDate = formatPublishedDate(stats.publishedAt);
+
+      // Update the video in the active videos array state
       setVideos((prevVideos) =>
         prevVideos.map((v) => {
           if (v.id === videoId || v.youtubeId === videoId) {
@@ -105,6 +127,8 @@ export function useYouTube() {
               viewCount: stats.viewCount,
               views: stats.formattedViews,
               likeCount: stats.likeCount ?? v.likeCount,
+              title: stats.title || v.title,
+              publishDate: formattedDate !== 'Recent' ? formattedDate : v.publishDate,
             };
           }
           return v;
@@ -119,22 +143,24 @@ export function useYouTube() {
             viewCount: stats.viewCount,
             views: stats.formattedViews,
             likeCount: stats.likeCount ?? prev.likeCount,
+            title: stats.title || prev.title,
+            publishDate: formattedDate !== 'Recent' ? formattedDate : prev.publishDate,
           };
         }
         return prev;
       });
     } catch (err) {
-      console.warn('Error updating real-time view count:', err);
+      console.warn('Auto-sync note for video count:', err);
     } finally {
       setIsRefreshingStats(false);
     }
   }, []);
 
-  // Initial load: Fetch top popular videos & real-time batch statistics
+  // Automatic Background Sync on mount / page refresh
   useEffect(() => {
     let isMounted = true;
 
-    async function initializeYouTubeData() {
+    async function syncYouTubeDataInBackground() {
       setIsLoading(true);
       try {
         // Step 1: Query backend popular videos endpoint
@@ -147,6 +173,7 @@ export function useYouTube() {
           if (data.success && Array.isArray(data.videos) && data.videos.length > 0) {
             const mappedVideos: YouTubeVideo[] = data.videos.slice(0, 5).map((v: any) => {
               const numericCount = typeof v.viewCount === 'number' ? v.viewCount : parseInt(v.viewCount || '0', 10);
+              const accurateDate = formatPublishedDate(v.publishedAt || v.publishDate);
               return {
                 id: v.id,
                 youtubeId: v.youtubeId || v.id,
@@ -157,7 +184,8 @@ export function useYouTube() {
                 duration: v.duration || '10:00',
                 viewCount: numericCount,
                 views: formatViewCount(numericCount > 0 ? numericCount : v.views),
-                publishDate: v.publishDate || 'Recent',
+                publishDate: accurateDate,
+                publishedAt: v.publishedAt,
                 description: v.description || 'Watch authentic experiences and university guidance in Germany with Prakhar Rajput.',
                 likeCount: v.likeCount
               };
@@ -166,30 +194,35 @@ export function useYouTube() {
             if (isMounted && mappedVideos.length > 0) {
               setVideos(mappedVideos);
               setSelectedVideo(mappedVideos[0]);
+              setCachedYouTubeData(CACHE_KEY_POPULAR, mappedVideos);
             }
           }
         }
 
-        // Step 2: Fetch real-time view counts for all videos via YouTube Data API v3 fetch function
+        // Step 2: Fetch real-time view counts for all videos via YouTube Data API v3 batch
         const allVideoIds = YOUTUBE_RECENT_VIDEOS.map((v) => v.youtubeId || v.id);
         const batchStats = await fetchBatchYouTubeViewCounts(allVideoIds);
 
         if (isMounted && Object.keys(batchStats).length > 0) {
-          setVideos((prevVideos) =>
-            prevVideos.map((v) => {
+          setVideos((prevVideos) => {
+            const updated = prevVideos.map((v) => {
               const videoKey = v.youtubeId || v.id;
               const stat = batchStats[videoKey];
               if (stat) {
+                const accurateDate = formatPublishedDate(stat.publishedAt || v.publishDate);
                 return {
                   ...v,
                   viewCount: stat.viewCount,
                   views: stat.formattedViews,
                   likeCount: stat.likeCount ?? v.likeCount,
+                  publishDate: accurateDate !== 'Recent' ? accurateDate : v.publishDate,
                 };
               }
               return v;
-            })
-          );
+            });
+            setCachedYouTubeData(CACHE_KEY_POPULAR, updated);
+            return updated;
+          });
 
           const activeKey = selectedVideo.youtubeId || selectedVideo.id;
           if (batchStats[activeKey]) {
@@ -197,7 +230,7 @@ export function useYouTube() {
           }
         }
       } catch (err) {
-        console.debug('Dynamic YouTube popular videos fetch note: falling back to verified uploads', err);
+        console.debug('Background YouTube sync note:', err);
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -205,14 +238,14 @@ export function useYouTube() {
       }
     }
 
-    initializeYouTubeData();
+    syncYouTubeDataInBackground();
 
     return () => {
       isMounted = false;
     };
   }, []);
 
-  // When user clicks/selects a different video, fetch its real-time stats
+  // When user clicks/selects a different video, automatically fetch its stats
   const selectVideoWithStats = useCallback((video: YouTubeVideo) => {
     setSelectedVideo(video);
     updateRealtimeViewCountForVideo(video.youtubeId || video.id);

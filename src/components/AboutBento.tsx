@@ -70,7 +70,7 @@ export const AboutBento: React.FC = () => {
   };
 
   return (
-    <section id="about" className="relative py-24 bg-[#08090D] overflow-hidden">
+    <section id="about" className="relative py-24 bg-white dark:bg-[#08090D] overflow-hidden border-t border-slate-200 dark:border-white/[0.06] transition-colors duration-200">
       {/* Background glow accent */}
       <div className="absolute top-1/2 -left-40 w-96 h-96 bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
@@ -78,14 +78,14 @@ export const AboutBento: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-mono text-indigo-300 mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-xs font-mono text-indigo-700 dark:text-indigo-300 mb-3 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
             <span>Credentials &amp; Authority</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
             Built on Experience, Code &amp; Real German Groundwork
           </h2>
-          <p className="text-gray-400 max-w-2xl text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-gray-400 max-w-2xl text-sm sm:text-base leading-relaxed">
             I don&apos;t just consult from theory. I live the international student journey every day as a Computer Science student at the University of Bremen.
           </p>
         </div>
@@ -100,26 +100,26 @@ export const AboutBento: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-5 bg-[#0E111C]/80 border border-white/[0.08] hover:border-cyan-500/30 rounded-2xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group transition-all"
+            className="md:col-span-5 bg-white dark:bg-[#0E111C]/80 border border-slate-200 dark:border-white/[0.08] hover:border-cyan-500/40 rounded-2xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group transition-all shadow-sm dark:shadow-md"
           >
             <div className="absolute top-0 right-0 w-52 h-52 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none group-hover:bg-cyan-500/10 transition-colors" />
 
             <div>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                  <div className="w-9 h-9 rounded-xl bg-cyan-100 dark:bg-cyan-500/15 border border-cyan-300 dark:border-cyan-500/30 flex items-center justify-center text-cyan-700 dark:text-cyan-400">
                     <Award className="w-4.5 h-4.5" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white tracking-tight">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                       Prakhar Rajput
                     </h3>
-                    <span className="text-xs font-mono text-gray-400">
+                    <span className="text-xs font-mono text-slate-500 dark:text-gray-400">
                       Founder &amp; Lead Consultant
                     </span>
                   </div>
                 </div>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono bg-emerald-50 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30 font-semibold">
                   Lead Mentor
                 </span>
               </div>
@@ -132,7 +132,7 @@ export const AboutBento: React.FC = () => {
                 rel="noopener noreferrer"
                 title="View Prakhar's photo on Instagram (@germanywithprakhar)"
                 aria-label="View Prakhar Rajput on Instagram @germanywithprakhar"
-                className="relative aspect-[4/3] sm:aspect-[4/3.8] max-h-[340px] w-full rounded-xl overflow-hidden bg-[#0A0C14] border border-white/10 hover:border-pink-500/50 shadow-lg my-3 block group/photo cursor-pointer transition-all"
+                className="relative aspect-[4/3] sm:aspect-[4/3.8] max-h-[340px] w-full rounded-xl overflow-hidden bg-[#0A0C14] border border-slate-200 dark:border-white/10 hover:border-pink-500/50 shadow-md my-3 block group/photo cursor-pointer transition-all"
               >
                 <img
                   src="/travel-photo.jpg"
@@ -160,14 +160,14 @@ export const AboutBento: React.FC = () => {
                 </div>
               </a>
 
-              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-3">
+              <p className="text-slate-700 dark:text-gray-300 text-xs sm:text-sm leading-relaxed mb-3">
                 Direct student guidance grounded in real-time academic, visa, and campus experience at the University of Bremen. No corporate intermediaries.
               </p>
             </div>
 
-            <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-gray-400 font-mono">
+            <div className="pt-3 border-t border-slate-200 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-gray-400 font-mono">
               <span>University of Bremen</span>
-              <span className="text-cyan-400">Computer Science</span>
+              <span className="text-cyan-600 dark:text-cyan-400 font-semibold">Computer Science</span>
             </div>
           </motion.div>
 
@@ -179,31 +179,31 @@ export const AboutBento: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="md:col-span-7 bg-[#0E111C]/80 border border-white/[0.08] hover:border-indigo-500/30 rounded-2xl p-6 sm:p-8 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group transition-all"
+            className="md:col-span-7 bg-white dark:bg-[#0E111C]/80 border border-slate-200 dark:border-white/[0.08] hover:border-indigo-500/40 rounded-2xl p-6 sm:p-8 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group transition-all shadow-sm dark:shadow-md"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-500/10 transition-colors" />
 
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-500/15 border border-indigo-300 dark:border-indigo-500/30 flex items-center justify-center text-indigo-700 dark:text-indigo-400">
                     <Code2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white tracking-tight">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                       Computer Science at Uni Bremen
                     </h3>
-                    <span className="text-xs font-mono text-gray-400">
+                    <span className="text-xs font-mono text-slate-500 dark:text-gray-400">
                       BSc Computer Science • University of Bremen
                     </span>
                   </div>
                 </div>
-                <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-mono bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-mono bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/30 font-semibold">
                   CS Student
                 </span>
               </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-6">
+              <p className="text-slate-700 dark:text-gray-300 text-sm leading-relaxed mb-6">
                 Active Computer Science undergraduate at the University of Bremen. I leverage direct academic knowledge of German university Prüfungsordnungen (examination regulations), APS documentation, and faculty standards to help students craft competitive applications.
               </p>
 
@@ -279,39 +279,39 @@ export const AboutBento: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="md:col-span-6 lg:col-span-4 bg-[#0E111C]/80 border border-white/[0.08] hover:border-purple-500/30 rounded-2xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group transition-all"
+            className="md:col-span-6 lg:col-span-4 bg-white dark:bg-[#0E111C]/80 border border-slate-200 dark:border-white/[0.08] hover:border-purple-500/40 rounded-2xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group transition-all shadow-sm dark:shadow-md"
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-purple-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-purple-500/10 transition-colors" />
 
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-500/15 border border-purple-300 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-400">
                   <Languages className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white tracking-tight">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                     Trilingual Communicator
                   </h3>
-                  <span className="text-xs font-mono text-gray-400">
+                  <span className="text-xs font-mono text-slate-500 dark:text-gray-400">
                     Cultural &amp; Bureaucratic Fluency
                   </span>
                 </div>
               </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-5">
+              <p className="text-slate-700 dark:text-gray-300 text-sm leading-relaxed mb-5">
                 Connecting German authorities, university admissions committees, and international students without linguistic barriers.
               </p>
 
               {/* Language Switcher Tabs */}
-              <div className="flex rounded-xl bg-[#090B12] p-1 border border-white/[0.08] mb-4">
+              <div className="flex rounded-xl bg-slate-100 dark:bg-[#090B12] p-1 border border-slate-200 dark:border-white/[0.08] mb-4">
                 {(['de', 'en', 'hi'] as const).map((code) => (
                   <button
                     key={code}
                     onClick={() => setActiveLang(code)}
                     className={`flex-1 py-1.5 px-1 text-[11px] sm:text-xs font-medium rounded-lg transition-all text-center ${
                       activeLang === code
-                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm'
-                        : 'text-gray-400 hover:text-white'
+                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm font-semibold'
+                        : 'text-slate-600 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white'
                     }`}
                   >
                     {code === 'de' ? (
@@ -326,29 +326,29 @@ export const AboutBento: React.FC = () => {
               </div>
 
               {/* Active Language Detail Card */}
-              <div className="rounded-xl bg-[#090B12] border border-white/[0.08] p-4 text-xs">
+              <div className="rounded-xl bg-slate-50 dark:bg-[#090B12] border border-slate-200 dark:border-white/[0.08] p-4 text-xs shadow-xs">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-bold text-white text-sm">{languageSamples[activeLang].lang}</span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                  <span className="font-bold text-slate-900 dark:text-white text-sm">{languageSamples[activeLang].lang}</span>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30 font-semibold">
                     {languageSamples[activeLang].level}
                   </span>
                 </div>
-                <p className="italic text-gray-300 mb-2 font-serif text-sm">
+                <p className="italic text-slate-800 dark:text-gray-300 mb-2 font-serif text-sm">
                   {languageSamples[activeLang].sample}
                 </p>
-                <p className="text-gray-400 text-[11px] mb-3">
+                <p className="text-slate-600 dark:text-gray-400 text-[11px] mb-3">
                   {languageSamples[activeLang].translation}
                 </p>
-                <div className="pt-2 border-t border-white/[0.06] text-[11px] text-indigo-300 flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="pt-2 border-t border-slate-200 dark:border-white/[0.06] text-[11px] text-indigo-700 dark:text-indigo-300 flex items-center gap-1.5 font-medium">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                   <span>{languageSamples[activeLang].context}</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs text-gray-400 font-mono">
+            <div className="mt-5 pt-4 border-t border-slate-200 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-gray-400 font-mono">
               <span>Goethe C1 Certified</span>
-              <span className="text-emerald-400">Available in all 3 languages</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Available in all 3 languages</span>
             </div>
           </motion.div>
 
@@ -366,57 +366,57 @@ export const AboutBento: React.FC = () => {
             whileTap={{ scale: 0.99 }}
             transition={{ duration: 0.25 }}
             id="creator-youtube-card-link"
-            className="md:col-span-6 lg:col-span-4 bg-[#0E111C]/80 border border-white/[0.08] hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-600/10 rounded-2xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group cursor-pointer transition-all block"
+            className="md:col-span-6 lg:col-span-4 bg-white dark:bg-[#0E111C]/80 border border-slate-200 dark:border-white/[0.08] hover:border-red-500/50 hover:shadow-xl hover:shadow-red-600/10 rounded-2xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group cursor-pointer transition-all block shadow-sm dark:shadow-md"
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-red-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-red-500/15 transition-colors" />
 
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400 group-hover:scale-110 group-hover:bg-red-500/25 transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-500/15 border border-red-300 dark:border-red-500/30 flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all">
                     <Video className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-1.5">
-                      <span>Content Creator &amp; Storyteller</span>
-                      <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-red-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5">
+                      <span>Content Creator</span>
+                      <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                     </h3>
-                    <span className="text-xs font-mono text-gray-400">
-                      YouTube: Tech, Travel &amp; Germany Education
+                    <span className="text-xs font-mono text-slate-500 dark:text-gray-400">
+                      YouTube: Tech &amp; Germany
                     </span>
                   </div>
                 </div>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-red-500/10 text-red-400 border border-red-500/20 group-hover:bg-red-600 group-hover:text-white transition-all">
-                  Visit Channel ↗
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/20 group-hover:bg-red-600 group-hover:text-white transition-all font-semibold">
+                  Channel ↗
                 </span>
               </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-5">
+              <p className="text-slate-700 dark:text-gray-300 text-sm leading-relaxed mb-5">
                 Producing cinema-grade educational films and honest vlogs detailing student life in Germany, cost realities, campus walkthroughs, and practical coding tutorials.
               </p>
 
               <div className="grid grid-cols-3 gap-3 mb-4 text-center">
-                <div className="rounded-xl bg-[#090B12] p-3 border border-white/[0.06] group-hover:border-white/15 transition-colors">
-                  <div className="text-base font-bold text-white font-mono">4K 60fps</div>
-                  <div className="text-[11px] text-gray-400">Sony Alpha Cinema</div>
+                <div className="rounded-xl bg-slate-50 dark:bg-[#090B12] p-3 border border-slate-200 dark:border-white/[0.06] group-hover:border-slate-300 dark:group-hover:border-white/15 transition-colors">
+                  <div className="text-base font-bold text-slate-900 dark:text-white font-mono">4K 60fps</div>
+                  <div className="text-[11px] text-slate-500 dark:text-gray-400">Sony Alpha Cinema</div>
                 </div>
-                <div className="rounded-xl bg-[#090B12] p-3 border border-white/[0.06] group-hover:border-red-500/40 transition-colors">
-                  <div className="text-base font-bold text-red-400 font-mono">Premiere</div>
-                  <div className="text-[11px] text-gray-300 font-medium">Adobe Premiere Pro</div>
+                <div className="rounded-xl bg-slate-50 dark:bg-[#090B12] p-3 border border-slate-200 dark:border-white/[0.06] group-hover:border-red-400 dark:group-hover:border-red-500/40 transition-colors">
+                  <div className="text-base font-bold text-red-600 dark:text-red-400 font-mono">Premiere</div>
+                  <div className="text-[11px] text-slate-600 dark:text-gray-300 font-medium">Adobe Premiere</div>
                 </div>
-                <div className="rounded-xl bg-[#090B12] p-3 border border-white/[0.06] group-hover:border-white/15 transition-colors">
-                  <div className="text-base font-bold text-emerald-400 font-mono">100%</div>
-                  <div className="text-[11px] text-gray-400">Honest Fact-Checked</div>
+                <div className="rounded-xl bg-slate-50 dark:bg-[#090B12] p-3 border border-slate-200 dark:border-white/[0.06] group-hover:border-emerald-400 dark:group-hover:border-white/15 transition-colors">
+                  <div className="text-base font-bold text-emerald-600 dark:text-emerald-400 font-mono">100%</div>
+                  <div className="text-[11px] text-slate-500 dark:text-gray-400">Fact-Checked</div>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-white/[0.06] text-xs font-mono text-gray-300">
+            <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-white/[0.06] text-xs font-mono text-slate-600 dark:text-gray-300">
               <span className="flex items-center gap-1.5">
-                <Film className="w-3.5 h-3.5 text-red-400" />
-                <span>Scriptwriting, Audio &amp; Post-Production</span>
+                <Film className="w-3.5 h-3.5 text-red-600 dark:text-red-400" />
+                <span>Scripting, Audio &amp; Post</span>
               </span>
-              <span className="text-red-400 font-semibold group-hover:underline flex items-center gap-1">
+              <span className="text-red-600 dark:text-red-400 font-semibold group-hover:underline flex items-center gap-1">
                 @prakhar.rajput
                 <ExternalLink className="w-3 h-3" />
               </span>
@@ -431,50 +431,50 @@ export const AboutBento: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="md:col-span-12 lg:col-span-4 bg-[#0E111C]/80 border border-white/[0.08] hover:border-cyan-500/30 rounded-2xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group transition-all"
+            className="md:col-span-12 lg:col-span-4 bg-white dark:bg-[#0E111C]/80 border border-slate-200 dark:border-white/[0.08] hover:border-cyan-500/40 rounded-2xl p-6 sm:p-7 flex flex-col justify-between backdrop-blur-xl relative overflow-hidden group transition-all shadow-sm dark:shadow-md"
           >
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-500/15 border border-cyan-300 dark:border-cyan-500/30 flex items-center justify-center text-cyan-700 dark:text-cyan-400 shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white tracking-tight">
-                      On-Ground in Bremen, Germany
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+                      On-Ground in Bremen
                     </h3>
-                    <span className="text-xs font-mono text-gray-400">
-                      Central European Time (CET / UTC+1)
+                    <span className="text-xs font-mono text-slate-500 dark:text-gray-400">
+                      Central European Time (CET)
                     </span>
                   </div>
                 </div>
                 {/* Live Clock Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 border border-cyan-500/30 font-mono text-xs text-cyan-300 shadow-inner w-fit">
-                  <Clock className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-black/60 border border-slate-300 dark:border-cyan-500/30 font-mono text-xs text-cyan-700 dark:text-cyan-300 shadow-inner w-fit font-bold">
+                  <Clock className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 animate-pulse" />
                   <span>{bremenTime || '12:00:00'} CET</span>
                 </div>
               </div>
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                Living inside the German ecosystem means up-to-the-minute awareness of immigration policies, the 2026 Opportunity Card (Chancenkarte), Ausländerbehörde (Foreigners Authority) regulations, and real-time student job markets.
+              <p className="text-slate-700 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                Living inside the German ecosystem means up-to-the-minute awareness of immigration policies, the 2026 Opportunity Card (Chancenkarte), Ausländerbehörde regulations, and real-time student job markets.
               </p>
 
               <div className="flex flex-wrap gap-2 text-xs">
-                <span className="px-2.5 py-1 rounded-md bg-white/[0.04] text-gray-300 border border-white/[0.08]">
+                <span className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-gray-300 border border-slate-200 dark:border-white/[0.08]">
                   Uni Bremen Campus Active
                 </span>
-                <span className="px-2.5 py-1 rounded-md bg-white/[0.04] text-gray-300 border border-white/[0.08]">
+                <span className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-gray-300 border border-slate-200 dark:border-white/[0.08]">
                   Local Bank &amp; TK Knowledge
                 </span>
-                <span className="px-2.5 py-1 rounded-md bg-white/[0.04] text-gray-300 border border-white/[0.08]">
-                  Bremen &amp; Lower Saxony Transit
+                <span className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-gray-300 border border-slate-200 dark:border-white/[0.08]">
+                  Bremen &amp; Transit Active
                 </span>
               </div>
             </div>
 
-            <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs text-gray-400 font-mono">
-              <span>Direct Insights • No Commercial Middlemen</span>
-              <span className="text-cyan-400">100% Student-First</span>
+            <div className="pt-4 mt-4 border-t border-slate-200 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-gray-400 font-mono">
+              <span>Direct Insights • No Agency Markups</span>
+              <span className="text-cyan-600 dark:text-cyan-400 font-semibold">100% Student-First</span>
             </div>
           </motion.div>
         </div>

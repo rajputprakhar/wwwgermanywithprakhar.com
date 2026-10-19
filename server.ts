@@ -723,7 +723,12 @@ async function startServer() {
                   duration: formatIsoDuration(item.contentDetails?.duration || ""),
                   viewCount: rawViews,
                   views: formatViews(rawViews),
-                  publishDate: item.snippet?.publishedAt ? new Date(item.snippet.publishedAt).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "Recent",
+                  publishDate: (() => {
+                    if (!item.snippet?.publishedAt) return "Recent";
+                    const d = new Date(item.snippet.publishedAt);
+                    if (isNaN(d.getTime()) || d.getFullYear() < 2015) return "Recent";
+                    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+                  })(),
                   description: item.snippet?.description?.slice(0, 180) || ""
                 };
               });

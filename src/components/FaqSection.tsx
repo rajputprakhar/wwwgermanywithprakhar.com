@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ChevronDown, 
+  ChevronUp,
   Sparkles, 
   RefreshCw, 
   ExternalLink, 
@@ -42,6 +43,8 @@ interface FaqSectionProps {
 
 type ActiveSectionView = 'faq' | 'news' | 'both';
 
+const DEFAULT_FAQ_COUNT = 5;
+
 export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
   // Navigation & View State
   const [activeView, setActiveView] = useState<ActiveSectionView>('faq');
@@ -52,7 +55,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
   const [selectedFaqCategory, setSelectedFaqCategory] = useState<string>('All');
   const [faqSearchQuery, setFaqSearchQuery] = useState<string>('');
   const [openFaqIds, setOpenFaqIds] = useState<string[]>(['journey-1', 'travel-1']);
-  const [visibleFaqCount, setVisibleFaqCount] = useState<number>(6);
+  const [visibleFaqCount, setVisibleFaqCount] = useState<number>(DEFAULT_FAQ_COUNT);
 
   const faqCategories: (string)[] = [
     'All',
@@ -181,7 +184,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
     : filteredNews;
 
   return (
-    <section id="faq" className="relative py-24 bg-[#08090E] overflow-hidden border-t border-white/[0.06]">
+    <section id="faq" className="relative py-24 bg-slate-50 dark:bg-[#08090E] overflow-hidden border-t border-slate-200 dark:border-white/[0.06] transition-colors duration-200">
       {/* Background Ambience Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[380px] bg-gradient-to-br from-cyan-600/10 via-indigo-600/5 to-purple-600/5 blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-blue-600/5 blur-[140px] rounded-full pointer-events-none" />
@@ -192,28 +195,28 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
         <div className="text-center max-w-3xl mx-auto mb-10">
           
           {/* Visual Kicker */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-4 shadow-lg shadow-cyan-500/5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-mono mb-4 shadow-xs">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
             </span>
             <span className="font-bold tracking-wide">Journey with Prakhar</span>
-            <span className="text-white/40">•</span>
-            <span className="text-gray-300">Dual-Section Intelligence Hub</span>
+            <span className="text-slate-300 dark:text-white/40">•</span>
+            <span className="text-slate-600 dark:text-gray-300">Dual-Section Intelligence Hub</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
             Frequently Asked Questions &amp; Live News
           </h2>
 
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-gray-300 leading-relaxed">
             Essential foundational knowledge on my journey, low-cost European travel, and computer science at the University of Bremen—paired with real-time, live-fetched regulatory directives and tech headlines.
           </p>
         </div>
 
         {/* Dual-Section Switcher Tabs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-          <div className="inline-flex p-1.5 rounded-2xl bg-[#0F121F] border border-white/10 shadow-xl">
+          <div className="inline-flex p-1.5 rounded-2xl bg-slate-100 dark:bg-[#0F121F] border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-xl">
             
             {/* Tab: Section A (Core FAQ) */}
             <button
@@ -221,12 +224,12 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
               className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 cursor-pointer ${
                 activeView === 'faq'
                   ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-indigo-600/30 font-bold'
-                  : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/80 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/[0.04]'
               }`}
             >
-              <BookOpen className="w-4 h-4 text-cyan-400" />
+              <BookOpen className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
               <span>Section A: Core FAQ</span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-white/10 text-gray-200">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-white/20 dark:bg-white/10 text-slate-900 dark:text-gray-200">
                 {CORE_JOURNEY_FAQS.length}
               </span>
             </button>
@@ -237,17 +240,17 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
               className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 cursor-pointer relative ${
                 activeView === 'news'
                   ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-600/30 font-bold'
-                  : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/80 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/[0.04]'
               }`}
             >
-              <Radio className={`w-4 h-4 ${activeView === 'news' ? 'text-white' : 'text-cyan-400'}`} />
+              <Radio className={`w-4 h-4 ${activeView === 'news' ? 'text-white' : 'text-cyan-600 dark:text-cyan-400'}`} />
               <span>Section B: Today&apos;s News</span>
               
               {/* LIVE badge indicator */}
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                 </span>
                 LIVE
               </span>
@@ -258,8 +261,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
               onClick={() => setActiveView('both')}
               className={`hidden md:flex px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all items-center gap-2 cursor-pointer ${
                 activeView === 'both'
-                  ? 'bg-white text-black shadow-lg font-bold'
-                  : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
+                  ? 'bg-slate-900 text-white dark:bg-white dark:text-black shadow-lg font-bold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/80 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/[0.04]'
               }`}
               title="View both sections side-by-side"
             >
@@ -276,16 +279,16 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
           <div className={`${activeView === 'both' ? 'mb-16 border-b border-white/10 pb-16' : ''}`}>
             
             {/* Section A Title Bar */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 bg-[#0E111E] border border-white/[0.08] p-5 rounded-2xl shadow-xl">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 bg-white dark:bg-[#0E111E] border border-slate-200 dark:border-white/[0.08] p-5 rounded-2xl shadow-sm dark:shadow-xl">
               <div>
-                <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 font-semibold mb-1">
+                <div className="flex items-center gap-2 text-xs font-mono text-cyan-700 dark:text-cyan-400 font-semibold mb-1">
                   <BookOpen className="w-4 h-4" />
                   <span>SECTION A · CORE FOUNDATIONS</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                   Standard FAQ: Journey, Travel, Tech &amp; Background
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-400 mt-0.5">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-400 mt-0.5">
                   Comprehensive, verified answers to common questions about moving to Germany, university studies, and travel.
                 </p>
               </div>
@@ -294,13 +297,13 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={handleExpandAllFaqs}
-                  className="px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 hover:text-white border border-white/10 text-xs font-mono transition-colors"
+                  className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white border border-slate-300 dark:border-white/10 text-xs font-mono transition-colors"
                 >
                   Expand All
                 </button>
                 <button
                   onClick={handleCollapseAllFaqs}
-                  className="px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 hover:text-white border border-white/10 text-xs font-mono transition-colors"
+                  className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white border border-slate-300 dark:border-white/10 text-xs font-mono transition-colors"
                 >
                   Collapse All
                 </button>
@@ -320,11 +323,11 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
                   return (
                     <button
                       key={cat}
-                      onClick={() => { setSelectedFaqCategory(cat); setVisibleFaqCount(6); }}
+                      onClick={() => { setSelectedFaqCategory(cat); setVisibleFaqCount(DEFAULT_FAQ_COUNT); }}
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                         selectedFaqCategory === cat
                           ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-indigo-600/30 border border-blue-400/40 font-semibold'
-                          : 'bg-[#101322] text-gray-400 border border-white/[0.08] hover:text-white hover:border-white/20'
+                          : 'bg-slate-100 dark:bg-[#101322] text-slate-700 dark:text-gray-400 border border-slate-200 dark:border-white/[0.08] hover:text-slate-900 dark:hover:text-white'
                       }`}
                     >
                       <span>{cat}</span>
@@ -336,18 +339,21 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
 
               {/* Search Box */}
               <div className="max-w-xl mx-auto relative">
-                <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Search className="w-4 h-4 text-slate-400 dark:text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="text"
                   value={faqSearchQuery}
-                  onChange={(e) => setFaqSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setFaqSearchQuery(e.target.value);
+                    setVisibleFaqCount(DEFAULT_FAQ_COUNT);
+                  }}
                   placeholder="Search questions on journey, Bremen CS, budget travel, visas..."
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0D101C] border border-white/10 text-white placeholder-gray-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-[#0D101C] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-500 shadow-xs transition-colors"
                 />
                 {faqSearchQuery && (
                   <button
-                    onClick={() => setFaqSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-white"
+                    onClick={() => { setFaqSearchQuery(''); setVisibleFaqCount(DEFAULT_FAQ_COUNT); }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white"
                   >
                     Clear
                   </button>
@@ -355,14 +361,14 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
               </div>
             </div>
 
-            {/* Accordion List */}
-            <div className="space-y-3.5">
+            {/* Accordion List with Anchor for Smooth Scroll Collapse */}
+            <div id="faq-questions-container" className="space-y-3.5 scroll-mt-28">
               {displayedFaqs.length === 0 ? (
-                <div className="text-center py-12 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-gray-400">
+                <div className="text-center py-12 p-6 rounded-2xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.06] text-slate-500 dark:text-gray-400 shadow-xs">
                   <p className="text-sm">No matching questions found.</p>
                   <button 
-                    onClick={() => { setSelectedFaqCategory('All'); setFaqSearchQuery(''); }}
-                    className="mt-3 text-xs text-cyan-400 hover:underline font-mono"
+                    onClick={() => { setSelectedFaqCategory('All'); setFaqSearchQuery(''); setVisibleFaqCount(DEFAULT_FAQ_COUNT); }}
+                    className="mt-3 text-xs text-cyan-700 dark:text-cyan-400 hover:underline font-mono"
                   >
                     Reset FAQ Filters
                   </button>
@@ -374,32 +380,32 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
                   return (
                     <div
                       key={faq.id}
-                      className={`rounded-2xl border transition-all duration-200 ${
+                      className={`faq-accordion-item rounded-2xl border transition-all duration-200 ${
                         isOpen 
-                          ? 'bg-[#0E1222] border-indigo-500/35 shadow-xl shadow-indigo-950/20'
-                          : 'bg-[#0A0C16] border-white/[0.07] hover:border-white/15'
+                          ? 'bg-slate-50/80 dark:bg-[#0E1222] border-indigo-300 dark:border-indigo-500/35 shadow-md shadow-indigo-950/10'
+                          : 'bg-white dark:bg-[#0A0C16] border-slate-200 dark:border-white/[0.07] hover:border-slate-300 dark:hover:border-white/15 shadow-xs'
                       }`}
                     >
                       <button
                         onClick={() => toggleFaq(faq.id)}
-                        className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none cursor-pointer"
+                        className="faq-question-btn w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none cursor-pointer"
                         aria-expanded={isOpen}
                       >
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3.5 pr-4">
-                          {/* Category Marker - Zero-pill clean text discipline */}
-                          <div className="flex items-center gap-2 shrink-0 text-xs font-mono text-cyan-300">
+                          {/* Category Marker */}
+                          <div className="flex items-center gap-2 shrink-0 text-xs font-mono text-cyan-700 dark:text-cyan-300 font-medium">
                             <span>{faq.category}</span>
-                            <span className="text-white/20">/</span>
+                            <span className="text-slate-300 dark:text-white/20">/</span>
                           </div>
 
-                          <span className="text-sm sm:text-base font-semibold text-white tracking-tight">
+                          <span className="faq-question-text text-sm sm:text-base font-semibold text-slate-900 dark:text-white tracking-tight">
                             {faq.question}
                           </span>
                         </div>
 
                         <ChevronDown
-                          className={`w-4 h-4 text-gray-400 transition-transform duration-200 shrink-0 ${
-                            isOpen ? 'rotate-180 text-cyan-400' : ''
+                          className={`w-4 h-4 text-slate-400 dark:text-gray-400 transition-transform duration-200 shrink-0 ${
+                            isOpen ? 'rotate-180 text-cyan-600 dark:text-cyan-400' : ''
                           }`}
                         />
                       </button>
@@ -413,25 +419,25 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
                             transition={{ duration: 0.2 }}
                             className="overflow-hidden"
                           >
-                            <div className="px-5 sm:px-6 pb-6 pt-1 text-sm text-gray-300 leading-relaxed border-t border-white/[0.04] space-y-3.5">
-                              <p className="text-gray-300 leading-relaxed font-normal">
+                            <div className="faq-answer-content px-5 sm:px-6 pb-6 pt-1 text-sm text-slate-700 dark:text-gray-300 leading-relaxed border-t border-slate-200 dark:border-white/[0.04] space-y-3.5">
+                              <p className="text-slate-700 dark:text-gray-300 leading-relaxed font-normal">
                                 {faq.answer}
                               </p>
 
                               {/* Key Takeaway Box */}
                               {faq.keyTakeaway && (
-                                <div className="p-3.5 rounded-xl bg-white/[0.03] border border-cyan-500/20 flex items-start gap-2.5 text-xs text-gray-300">
-                                  <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                                <div className="p-3.5 rounded-xl bg-cyan-50/70 dark:bg-white/[0.03] border border-cyan-200 dark:border-cyan-500/20 flex items-start gap-2.5 text-xs text-slate-800 dark:text-gray-300">
+                                  <Info className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
                                   <div>
-                                    <span className="font-semibold text-white">Direct Guidance: </span>
-                                    <span>{faq.keyTakeaway}</span>
+                                    <span className="font-semibold text-slate-900 dark:text-white">Direct Guidance: </span>
+                                    <span className="text-slate-700 dark:text-gray-300">{faq.keyTakeaway}</span>
                                   </div>
                                 </div>
                               )}
 
                               {/* Tags */}
                               {faq.tags && faq.tags.length > 0 && (
-                                <div className="flex items-center gap-2 pt-1 text-xs text-gray-500 font-mono">
+                                <div className="flex items-center gap-2 pt-1 text-xs text-slate-500 dark:text-gray-500 font-mono">
                                   <span>Topics:</span>
                                   <span>{faq.tags.join(' · ')}</span>
                                 </div>
@@ -446,18 +452,39 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
               )}
             </div>
 
-            {/* Load More FAQs Button */}
-            {hasMoreFaqs && (
+            {/* Show More / Show Less FAQs Toggle Button */}
+            {filteredFaqs.length > DEFAULT_FAQ_COUNT && (
               <div className="mt-8 flex flex-col items-center justify-center">
                 <button
-                  onClick={() => setVisibleFaqCount(filteredFaqs.length)}
-                  className="px-6 py-3 rounded-xl bg-[#111528] hover:bg-[#181E38] border border-cyan-500/30 hover:border-cyan-400 text-white font-semibold text-xs sm:text-sm flex items-center gap-2.5 transition-all shadow-lg hover:scale-[1.01] cursor-pointer"
+                  onClick={() => {
+                    if (visibleFaqCount > DEFAULT_FAQ_COUNT) {
+                      setVisibleFaqCount(DEFAULT_FAQ_COUNT);
+                      const el = document.getElementById('faq-questions-container');
+                      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                      setVisibleFaqCount(filteredFaqs.length);
+                    }
+                  }}
+                  id="faq-toggle-expand-btn"
+                  className="px-6 py-3 rounded-xl bg-slate-900 text-white hover:bg-slate-800 dark:bg-[#111528] dark:hover:bg-[#181E38] border border-slate-700 dark:border-cyan-500/30 dark:hover:border-cyan-400 font-semibold text-xs sm:text-sm flex items-center gap-2.5 transition-all shadow-lg hover:scale-[1.01] cursor-pointer"
                 >
-                  <ChevronDown className="w-4 h-4 text-cyan-400" />
-                  <span>Show All Core Questions</span>
-                  <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[11px] font-mono">
-                    +{filteredFaqs.length - visibleFaqCount} more
-                  </span>
+                  {visibleFaqCount > DEFAULT_FAQ_COUNT ? (
+                    <>
+                      <ChevronUp className="w-4 h-4 text-cyan-400" />
+                      <span>Show Less Questions</span>
+                      <span className="px-2 py-0.5 rounded-full bg-white/20 dark:bg-cyan-500/20 text-white dark:text-cyan-300 text-[11px] font-mono">
+                        Collapse to {DEFAULT_FAQ_COUNT}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="w-4 h-4 text-cyan-400" />
+                      <span>Show More Questions</span>
+                      <span className="px-2 py-0.5 rounded-full bg-white/20 dark:bg-cyan-500/20 text-white dark:text-cyan-300 text-[11px] font-mono">
+                        +{filteredFaqs.length - DEFAULT_FAQ_COUNT} more
+                      </span>
+                    </>
+                  )}
                 </button>
               </div>
             )}
@@ -734,22 +761,23 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
         )}
 
         {/* Still have questions CTA */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#0C0F1D] via-[#0F1428] to-[#14122C] border border-cyan-500/20 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left shadow-2xl">
+        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-sky-50 via-indigo-50 to-purple-50 dark:from-[#0C0F1D] dark:via-[#0F1428] dark:to-[#14122C] border border-indigo-200 dark:border-cyan-500/20 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left shadow-sm dark:shadow-2xl">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[11px] font-mono text-cyan-300 mb-2">
-              <Sparkles className="w-3 h-3" />
+            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-500/10 border border-cyan-300 dark:border-cyan-500/20 text-[11px] font-mono text-cyan-800 dark:text-cyan-300 mb-2 font-medium">
+              <Sparkles className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />
               <span>Personalized Profile Evaluation</span>
             </div>
-            <h4 className="text-lg font-bold text-white mb-1">
+            <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
               Have a specific question regarding your German university journey?
             </h4>
-            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-gray-300 leading-relaxed">
               Cut through unverified social forum rumors. Book a 1-on-1 strategy consultation directly with Prakhar (CS @ University of Bremen) to audit your ECTS credits, APS dossier, and university list.
             </p>
           </div>
           <button
             onClick={onBookCallClick}
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-cyan-600/30 hover:scale-[1.02] shrink-0 cursor-pointer"
+            id="faq-bottom-book-call-btn"
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-indigo-600/25 hover:scale-[1.02] shrink-0 cursor-pointer"
           >
             Book Strategy Call
           </button>

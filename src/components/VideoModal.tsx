@@ -36,12 +36,12 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose, onBookC
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-3xl bg-[#0D0F18] border border-white/15 rounded-3xl shadow-2xl p-5 sm:p-8 z-10 my-4 sm:my-8 max-h-[92vh] overflow-y-auto text-left"
+          className="relative w-full max-w-3xl bg-white dark:bg-[#0D0F18] border border-slate-200 dark:border-white/15 rounded-3xl shadow-2xl p-5 sm:p-8 z-10 my-4 sm:my-8 max-h-[92vh] overflow-y-auto text-left"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 p-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-gray-400 hover:text-white transition-colors z-20"
+            className="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.05] dark:hover:bg-white/[0.1] text-slate-500 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white transition-colors z-20 cursor-pointer"
             aria-label="Close video player"
           >
             <X className="w-5 h-5" />
@@ -49,23 +49,23 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose, onBookC
 
           {/* Video Title & Meta */}
           <div className="flex items-center gap-2.5 mb-3 text-xs font-mono">
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-red-500/20 text-red-400 font-bold">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 font-bold border border-red-200 dark:border-red-500/30">
               YOUTUBE FEATURED
             </span>
-            <span className="text-gray-400">{YOUTUBE_FEATURED.duration}</span>
-            <span className="text-gray-600">•</span>
-            <span className="text-gray-300 flex items-center gap-1">
-              <Eye className="w-3.5 h-3.5 text-red-400" />
+            <span className="text-slate-500 dark:text-gray-400">{YOUTUBE_FEATURED.duration}</span>
+            <span className="text-slate-300 dark:text-gray-600">•</span>
+            <span className="text-slate-700 dark:text-gray-300 flex items-center gap-1 font-medium">
+              <Eye className="w-3.5 h-3.5 text-red-600 dark:text-red-400" />
               <span>12.4K views</span>
             </span>
           </div>
 
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 pr-8 leading-snug">
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4 pr-8 leading-snug">
             {YOUTUBE_FEATURED.videoTitle}
           </h3>
 
           {/* Video Player Display Container */}
-          <div className="relative aspect-video rounded-2xl overflow-hidden bg-black mb-6 border border-white/10 shadow-2xl">
+          <div className="relative aspect-video rounded-2xl overflow-hidden bg-black mb-6 border border-slate-200 dark:border-white/10 shadow-2xl">
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_FEATURED.embedId}?autoplay=1&rel=0`}
               title={YOUTUBE_FEATURED.videoTitle}
@@ -76,22 +76,22 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose, onBookC
           </div>
 
           {/* Chapters Breakdown */}
-          <div className="rounded-xl bg-white/[0.02] border border-white/[0.08] p-4 mb-6">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-3">
+          <div className="rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.08] p-4 mb-6">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-gray-400 mb-3">
               Video Chapters &amp; Timestamps
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-gray-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-700 dark:text-gray-300">
               {chapters.map((ch) => (
                 <div key={ch.time} className="flex items-center gap-2">
-                  <span className="text-cyan-400 font-bold shrink-0">{ch.time}</span>
-                  <span className="truncate text-gray-300">{ch.title}</span>
+                  <span className="text-cyan-700 dark:text-cyan-400 font-bold shrink-0">{ch.time}</span>
+                  <span className="truncate text-slate-700 dark:text-gray-300">{ch.title}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Bottom Actions */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-white/10">
             <a
               href={PERSONAL_INFO.socials.youtube}
               target="_blank"

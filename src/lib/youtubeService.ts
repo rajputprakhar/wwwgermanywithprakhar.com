@@ -55,6 +55,85 @@ export function formatViewCountDisplay(count: number): string {
 }
 
 /**
+ * Accurately parses and formats publishedAt ISO dates from YouTube Data API v3
+ * into localized, clean human-readable date strings (e.g. "Oct 14, 2024", "2 days ago").
+ * Eliminates incorrect epoch (1970) or unparsed strings.
+ */
+export function formatPublishedDate(publishedAt?: string): string {
+  if (!publishedAt) return 'Recent';
+
+  const trimmed = publishedAt.trim();
+  // Already nicely formatted like "Aug 2024", "2 days ago", "1 week ago"
+  if (/^[A-Za-z]{3,9}\s+\d{4}$/.test(trimmed) || trimmed.includes('ago')) {
+    return trimmed;
+  }
+
+  const date = new Date(trimmed);
+  const time = date.getTime();
+  if (isNaN(time) || time <= 0) {
+    return 'Recent';
+  }
+
+  // Guard against Unix epoch bugs (< year 2015)
+  if (date.getFullYear() < 2015) {
+    return 'Recent';
+  }
+
+  const now = new Date();
+  const diffMs = now.getTime() - time;
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  if (diffHours < 24 && diffHours >= 0) {
+    return diffHours <= 1 ? 'Just now' : `${diffHours} hours ago`;
+  }
+  if (diffDays >= 1 && diffDays < 7) {
+    return diffDays === 1 ? '1 day ago' : `${diffDays} days ago`;
+  }
+  if (diffDays >= 7 && diffDays < 30) {
+    const weeks = Math.floor(diffDays / 7);
+    return weeks === 1 ? '1 week ago' : `${weeks} weeks ago`;
+  }
+
+  // Format in clean localized style: "Oct 14, 2024"
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+
+/**
+ * 15-minute TTL cache in localStorage to avoid YouTube API quota exhaustion
+ */
+const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
+
+export function getCachedYouTubeData<T>(key: string): T | null {
+  try {
+    const raw = localStorage.getItem(`yt_cache_${key}`);
+    if (!raw) return null;
+    const item = JSON.parse(raw);
+    if (Date.now() - item.timestamp < CACHE_TTL_MS) {
+      return item.data as T;
+    }
+  } catch {
+    // ignore parse error
+  }
+  return null;
+}
+
+export function setCachedYouTubeData<T>(key: string, data: T): void {
+  try {
+    localStorage.setItem(
+      `yt_cache_${key}`,
+      JSON.stringify({ timestamp: Date.now(), data })
+    );
+  } catch {
+    // ignore storage quota error
+  }
+}
+
+/**
  * Helper to retrieve the secured YouTube API key.
  * Prioritizes Vite environment variables, falling back to server-side proxy when client key is restricted.
  */

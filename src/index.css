@@ -268,7 +268,13 @@ html.light #topmate-profile-link-btn:hover,
 /* 2. SECTION CONTAINERS & BACKGROUND SURFACES IN LIGHT MODE                 */
 /* ------------------------------------------------------------------------- */
 
-/* Page Backgrounds & Sections */
+html:not(.dark) body,
+html.light body,
+[data-theme="light"] body {
+  background-color: #FAF8F5 !important;
+  color: #0F172A !important;
+}
+
 html:not(.dark) .bg-\[\#06070B\],
 html:not(.dark) .bg-\[\#08090D\],
 html:not(.dark) .bg-\[\#08090E\],
@@ -290,13 +296,13 @@ html.light .bg-\[\#090B12\],
 [data-theme="light"] .bg-\[\#090A0F\],
 [data-theme="light"] .bg-\[\#090A10\],
 [data-theme="light"] .bg-\[\#090B12\] {
-  background-color: #F8FAFC !important;
+  background-color: #FAF8F5 !important;
 }
 
 html:not(.dark) section,
 html.light section,
 [data-theme="light"] section {
-  border-color: #E2E8F0 !important;
+  border-color: #E7E5E4 !important;
 }
 
 /* Primary Card Surfaces */
@@ -910,6 +916,118 @@ html.light .live-news-card:hover,
 [data-theme="light"] .live-news-card:hover {
   border-color: #BAE6FD !important;
   box-shadow: 0 6px 16px -2px rgba(2, 132, 199, 0.15) !important;
+}
+
+/* Home Section Video Button & Card in Light Mode */
+html:not(.dark) #hero-secondary-video-btn,
+html.light #hero-secondary-video-btn,
+[data-theme="light"] #hero-secondary-video-btn {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+html:not(.dark) #hero-secondary-video-btn:hover,
+html.light #hero-secondary-video-btn:hover,
+[data-theme="light"] #hero-secondary-video-btn:hover {
+  background-color: #E2E8F0 !important;
+  border-color: #94A3B8 !important;
+  color: #0F172A !important;
+}
+html:not(.dark) #hero-secondary-video-btn span,
+html.light #hero-secondary-video-btn span,
+[data-theme="light"] #hero-secondary-video-btn span {
+  color: #0F172A !important;
+  font-weight: 600 !important;
+}
+html:not(.dark) #hero-secondary-video-btn .text-red-400,
+html.light #hero-secondary-video-btn .text-red-400,
+[data-theme="light"] #hero-secondary-video-btn .text-red-400,
+html:not(.dark) #hero-secondary-video-btn .text-red-600,
+html.light #hero-secondary-video-btn .text-red-600,
+[data-theme="light"] #hero-secondary-video-btn .text-red-600 {
+  color: #DC2626 !important;
+}
+
+/* FAQ Section Visibility Hardening in Light Mode */
+html:not(.dark) #faq .faq-accordion-item,
+html.light #faq .faq-accordion-item,
+[data-theme="light"] #faq .faq-accordion-item {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html:not(.dark) #faq .faq-question-btn,
+html.light #faq .faq-question-btn,
+[data-theme="light"] #faq .faq-question-btn {
+  color: #0F172A !important;
+}
+
+html:not(.dark) #faq .faq-question-text,
+html.light #faq .faq-question-text,
+[data-theme="light"] #faq .faq-question-text,
+html:not(.dark) #faq .faq-question-btn span,
+html.light #faq .faq-question-btn span,
+[data-theme="light"] #faq .faq-question-btn span,
+html:not(.dark) #faq button[aria-expanded] span.faq-question-text,
+html.light #faq button[aria-expanded] span.faq-question-text,
+[data-theme="light"] #faq button[aria-expanded] span.faq-question-text,
+html:not(.dark) #faq button.faq-question-btn:hover span,
+html.light #faq button.faq-question-btn:hover span,
+[data-theme="light"] #faq button.faq-question-btn:hover span,
+html:not(.dark) #faq button.faq-question-btn[aria-expanded="true"] span,
+html.light #faq button.faq-question-btn[aria-expanded="true"] span,
+[data-theme="light"] #faq button.faq-question-btn[aria-expanded="true"] span {
+  color: #0F172A !important;
+  font-weight: 600 !important;
+}
+
+html:not(.dark) #faq .faq-answer-content,
+html.light #faq .faq-answer-content,
+[data-theme="light"] #faq .faq-answer-content,
+html:not(.dark) #faq .faq-answer-content p,
+html.light #faq .faq-answer-content p,
+[data-theme="light"] #faq .faq-answer-content p {
+  color: #334155 !important;
+  border-top-color: #E2E8F0 !important;
+}
+
+/* "Book a Call" Section and CTA Buttons in Light Mode */
+html:not(.dark) #nav-book-call-btn div,
+html.light #nav-book-call-btn div,
+[data-theme="light"] #nav-book-call-btn div {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+  border-color: #334155 !important;
+}
+html:not(.dark) #nav-book-call-btn div span,
+html.light #nav-book-call-btn div span,
+[data-theme="light"] #nav-book-call-btn div span {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) [id^="consulting-tier-card-"] > div,
+html.light [id^="consulting-tier-card-"] > div,
+[data-theme="light"] [id^="consulting-tier-card-"] > div {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.06) !important;
+}
+html:not(.dark) [id^="consulting-tier-card-"] h3,
+html.light [id^="consulting-tier-card-"] h3,
+[data-theme="light"] [id^="consulting-tier-card-"] h3 {
+  color: #0F172A !important;
+}
+html:not(.dark) [id^="consulting-tier-card-"] .font-mono,
+html.light [id^="consulting-tier-card-"] .font-mono,
+[data-theme="light"] [id^="consulting-tier-card-"] .font-mono {
+  color: #0F172A;
+}
+html:not(.dark) [id^="consulting-tier-card-"] p,
+html.light [id^="consulting-tier-card-"] p,
+[data-theme="light"] [id^="consulting-tier-card-"] p {
+  color: #475569 !important;
 }
 
 /* ------------------------------------------------------------------------- */

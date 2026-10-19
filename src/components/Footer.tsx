@@ -88,16 +88,16 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
   };
 
   return (
-    <footer className="relative bg-[#06070B] border-t border-white/[0.08] pt-16 pb-12 overflow-hidden">
+    <footer className="relative bg-slate-100 dark:bg-[#06070B] border-t border-slate-200 dark:border-white/[0.08] pt-16 pb-12 overflow-hidden transition-colors duration-200">
       {/* Background soft glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-48 bg-indigo-600/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-14 border-b border-white/[0.08]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-14 border-b border-slate-200 dark:border-white/[0.08]">
           {/* Brand & Newsletter Section (Cols 5) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="brand-logo-container h-12 w-12 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center p-1.5 overflow-hidden transition-all shadow-sm">
+              <div className="brand-logo-container h-12 w-12 rounded-xl bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 flex items-center justify-center p-1.5 overflow-hidden transition-all shadow-xs">
                 <img
                   src="/logo.png"
                   alt="germanywithprakhar Logo"
@@ -106,33 +106,33 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
                 />
               </div>
               <div>
-                <span className="brand-title font-bold text-lg text-white tracking-tight transition-all">
-                  germany<span className="brand-accent text-cyan-400">with</span>prakhar
+                <span className="brand-title font-bold text-lg text-slate-900 dark:text-white tracking-tight transition-all">
+                  germany<span className="brand-accent text-cyan-600 dark:text-cyan-400">with</span>prakhar
                 </span>
-                <span className="brand-subtitle block text-xs font-mono text-gray-400 transition-colors">
+                <span className="brand-subtitle block text-xs font-mono text-slate-500 dark:text-gray-400 transition-colors">
                   by Prakhar Rajput • CS @ University of Bremen
                 </span>
               </div>
             </div>
 
-            <p className="text-sm text-gray-400 leading-relaxed max-w-sm">
+            <p className="text-sm text-slate-600 dark:text-gray-400 leading-relaxed max-w-sm">
               Helping ambitious international students navigate university applications, APS certificates, blocked accounts, and high-paying tech careers in Germany.
             </p>
 
             {/* Newsletter Form */}
             <div className="pt-2">
-              <label className="text-xs font-semibold text-white block mb-2 font-mono">
+              <label className="text-xs font-semibold text-slate-900 dark:text-white block mb-2 font-mono">
                 Join the weekly newsletter for tech insights and Germany survival tips.
               </label>
 
               {subscribed ? (
-                <div className="p-3.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono space-y-1">
+                <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-200 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs font-mono space-y-1">
                   <div className="flex items-center gap-2 font-semibold">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <span>Welcome aboard! Verified and registered.</span>
                   </div>
                   {deliverabilityInfo && (
-                    <p className="text-[11px] text-emerald-400/80 pl-6">
+                    <p className="text-[11px] text-emerald-700 dark:text-emerald-400/80 pl-6">
                       {deliverabilityInfo} • Delivery scheduled for this Sunday.
                     </p>
                   )}
@@ -142,7 +142,7 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
                   <form onSubmit={handleNewsletter} noValidate className="flex flex-col gap-2 max-w-md">
                     <div className="flex gap-2">
                       <div className="relative flex-1">
-                        <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        <Mail className="w-4 h-4 text-slate-400 dark:text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                         <input
                           id="newsletter-email-input"
                           type="email"
@@ -155,11 +155,11 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
                             if (errorMessage) setErrorMessage(null);
                           }}
                           placeholder="you@domain.com"
-                          className={`w-full pl-10 pr-3 py-2.5 rounded-xl bg-white/[0.04] border ${
+                          className={`w-full pl-10 pr-3 py-2.5 rounded-xl bg-white dark:bg-white/[0.04] border ${
                             errorMessage 
-                              ? 'border-red-500/70 focus:border-red-500' 
-                              : 'border-white/15 focus:border-indigo-500'
-                          } focus:outline-none text-xs text-white placeholder-gray-500 font-mono transition-colors disabled:opacity-50`}
+                              ? 'border-red-500 focus:border-red-500' 
+                              : 'border-slate-300 dark:border-white/15 focus:border-indigo-500'
+                          } focus:outline-none text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 font-mono transition-colors disabled:opacity-50 shadow-xs`}
                         />
                       </div>
                       <button

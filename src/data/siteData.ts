@@ -300,10 +300,10 @@ export const TOOLKIT_RESOURCES: ToolkitResource[] = [
     name: 'Expatrio Value Package',
     category: 'Finance & Banking',
     description: 'The all-in-one bundle: Government-approved Blocked Account + TK Public Health Insurance + Free German Bank Account (Aion/Revolut).',
-    benefit: 'Official German Federal Foreign Office accepted. Up to €139 cashback on arrival.',
-    discountCode: 'PRAKHARVIP',
+    benefit: 'Official German Federal Foreign Office accepted. Up to €139 cashback on arrival with code prakharr2.',
+    discountCode: 'prakharr2',
     badge: 'Most Recommended',
-    affiliateUrl: 'https://www.expatrio.com/?partner=prakhar',
+    affiliateUrl: 'https://www.expatrio.com?f=prakharr2',
     iconName: 'Building2'
   },
   {
@@ -546,7 +546,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: 'faq-3',
     category: 'Finances & Sperrkonto',
     question: 'How much money is required in the Blocked Account (Sperrkonto)?',
-    answer: 'For 2025/2026, the German Federal Foreign Office mandates a blocked account deposit of €992 per month (€11,904 per year). This covers living expenses, rent, and student health insurance. Platforms like Expatrio and Fintiba allow you to set up this account online in less than 24 hours.'
+    answer: 'For 2025/2026, the German Federal Foreign Office mandates a blocked account deposit of €992 per month (€11,904 per year). This covers living expenses, rent, and student health insurance. Platforms like Expatrio (recommended in our Student Toolkit using referral link https://www.expatrio.com?f=prakharr2 and code prakharr2) and Fintiba allow you to set up this account online in less than 24 hours.'
   },
   {
     id: 'faq-4',
