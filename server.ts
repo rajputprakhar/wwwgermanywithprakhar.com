@@ -618,6 +618,25 @@ async function startServer() {
     runIngestionPipeline().catch((err) => console.error("Scheduled FAQ pipeline sync error:", err));
   }, 12 * 60 * 60 * 1000);
 
+  // Helper to format ISO 8601 duration e.g. PT14M28S
+  const formatIsoDuration = (durationStr: string): string => {
+    const match = durationStr.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+    if (!match) return "10:00";
+    const h = match[1] ? parseInt(match[1], 10) : 0;
+    const m = match[2] ? parseInt(match[2], 10) : 0;
+    const s = match[3] ? parseInt(match[3], 10) : 0;
+    if (h > 0) return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    return `${m}:${String(s).padStart(2, "0")}`;
+  };
+
+  // Helper to format view counts cleanly
+  const formatViews = (count: number): string => {
+    if (count >= 1_000_000) return `${(count / 1_000_000).toFixed(1).replace(/\.0$/, "")}M views`;
+    if (count >= 10_000) return `${(count / 1_000).toFixed(0)}K views`;
+    if (count >= 1_000) return `${(count / 1_000).toFixed(1).replace(/\.0$/, "")}K views`;
+    return `${count.toLocaleString()} views`;
+  };
+
   // -------------------------------------------------------------
   // API ROUTE: /api/youtube/video-stats (GET)
   // Fetch Real-Time View Count & Statistics for specific video IDs
@@ -635,10 +654,18 @@ async function startServer() {
         const items = (data.items || []).map((item: any) => ({
           videoId: item.id,
           viewCount: parseInt(item.statistics?.viewCount || "0", 10),
+          formattedViews: formatViews(parseInt(item.statistics?.viewCount || "0", 10)),
+          duration: formatIsoDuration(item.contentDetails?.duration || ""),
           likeCount: item.statistics?.likeCount ? parseInt(item.statistics.likeCount, 10) : undefined,
           commentCount: item.statistics?.commentCount ? parseInt(item.statistics.commentCount, 10) : undefined,
           title: item.snippet?.title,
           publishedAt: item.snippet?.publishedAt,
+          publishDate: (() => {
+            if (!item.snippet?.publishedAt) return "Recent";
+            const d = new Date(item.snippet.publishedAt);
+            if (isNaN(d.getTime()) || d.getFullYear() < 2015) return "Recent";
+            return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+          })(),
           lastUpdated: new Date().toISOString()
         }));
 
@@ -657,6 +684,8 @@ async function startServer() {
       videoId,
       viewCount: 12420,
       formattedViews: "12.4K views",
+      duration: "14:28",
+      publishDate: "Oct 2024",
       lastUpdated: new Date().toISOString()
     };
     return res.json({ success: true, stats: fallbackStats, fallback: true });
@@ -669,25 +698,6 @@ async function startServer() {
   app.get("/api/youtube/popular", async (req, res) => {
     const channelId = (req.query.channelId as string) || "UC3YMsynPRyw5xqZ-Xl-66Sw";
     const apiKey = process.env.YOUTUBE_API_KEY || "AIzaSyCoBECXmDeBmlICfeBEwZFIkPZvsdl6f64";
-
-    // Helper to format ISO 8601 duration e.g. PT14M28S
-    const formatIsoDuration = (durationStr: string): string => {
-      const match = durationStr.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-      if (!match) return "10:00";
-      const h = match[1] ? parseInt(match[1], 10) : 0;
-      const m = match[2] ? parseInt(match[2], 10) : 0;
-      const s = match[3] ? parseInt(match[3], 10) : 0;
-      if (h > 0) return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-      return `${m}:${String(s).padStart(2, "0")}`;
-    };
-
-    // Helper to format view counts cleanly
-    const formatViews = (count: number): string => {
-      if (count >= 1_000_000) return `${(count / 1_000_000).toFixed(1).replace(/\.0$/, "")}M views`;
-      if (count >= 10_000) return `${(count / 1_000).toFixed(0)}K views`;
-      if (count >= 1_000) return `${(count / 1_000).toFixed(1).replace(/\.0$/, "")}K views`;
-      return `${count.toLocaleString()} views`;
-    };
 
     if (apiKey) {
       try {

@@ -302,7 +302,7 @@ export const TOOLKIT_RESOURCES: ToolkitResource[] = [
     description: 'The all-in-one bundle: Government-approved Blocked Account + TK Public Health Insurance + Free German Bank Account (Aion/Revolut).',
     benefit: 'Official German Federal Foreign Office accepted. Up to €139 cashback on arrival with code prakharr2.',
     discountCode: 'prakharr2',
-    badge: 'Most Recommended',
+    badge: 'Sole Recommended Sperrkonto',
     affiliateUrl: 'https://www.expatrio.com?f=prakharr2',
     iconName: 'Building2'
   },
@@ -312,20 +312,9 @@ export const TOOLKIT_RESOURCES: ToolkitResource[] = [
     category: 'Health Insurance',
     description: 'Voted best public health insurance in Germany for university students with full English app support, vaccine coverage, and dental benefits.',
     benefit: 'Automated direct reporting (M10 certificate) to German universities for matriculation.',
-    discountCode: 'FREE-SETUP',
     badge: 'Student Standard',
     affiliateUrl: 'https://tk.de/studenten-service',
     iconName: 'ShieldCheck'
-  },
-  {
-    id: 'fintiba',
-    name: 'Fintiba Blocked Account',
-    category: 'Finance & Banking',
-    description: 'Fast, secure Sperrkonto creation with instant blocking confirmation accepted by 100% of German consulates worldwide.',
-    benefit: 'Setup completed online in under 15 minutes without embassy certification.',
-    discountCode: 'PRAKHAR10',
-    affiliateUrl: 'https://www.fintiba.com',
-    iconName: 'Landmark'
   },
   {
     id: 'wg-gesucht',
@@ -346,17 +335,6 @@ export const TOOLKIT_RESOURCES: ToolkitResource[] = [
     badge: '100% Free',
     affiliateUrl: '#',
     iconName: 'GraduationCap'
-  },
-  {
-    id: 'tech-gear-setup',
-    name: 'Student Tech & Ergonomics Guide',
-    category: 'Tech Gear',
-    description: 'Curated list of reliable laptops (MacBook Pro / ThinkPad), noise-cancelling headphones (Sony WH-1000XM5), and travel adapters for German sockets.',
-    benefit: 'Exclusive student hardware discounts via Apple & CampusPoint Germany.',
-    discountCode: 'CAMPUS-DISCOUNT',
-    badge: 'Hardware',
-    affiliateUrl: 'https://www.campuspoint.de',
-    iconName: 'Laptop'
   }
 ];
 

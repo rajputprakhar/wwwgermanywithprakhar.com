@@ -531,7 +531,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onBookCallClick }) => {
               <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-white/10">
                 <div className="text-[11px] font-mono text-gray-400 flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Synced: {lastSyncTime}</span>
+                  <span>{lastSyncTime}</span>
                 </div>
 
                 <button

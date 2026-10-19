@@ -126,6 +126,7 @@ export function useYouTube() {
               ...v,
               viewCount: stats.viewCount,
               views: stats.formattedViews,
+              duration: stats.duration || v.duration,
               likeCount: stats.likeCount ?? v.likeCount,
               title: stats.title || v.title,
               publishDate: formattedDate !== 'Recent' ? formattedDate : v.publishDate,
@@ -142,6 +143,7 @@ export function useYouTube() {
             ...prev,
             viewCount: stats.viewCount,
             views: stats.formattedViews,
+            duration: stats.duration || prev.duration,
             likeCount: stats.likeCount ?? prev.likeCount,
             title: stats.title || prev.title,
             publishDate: formattedDate !== 'Recent' ? formattedDate : prev.publishDate,
@@ -214,6 +216,7 @@ export function useYouTube() {
                   ...v,
                   viewCount: stat.viewCount,
                   views: stat.formattedViews,
+                  duration: stat.duration || v.duration,
                   likeCount: stat.likeCount ?? v.likeCount,
                   publishDate: accurateDate !== 'Recent' ? accurateDate : v.publishDate,
                 };

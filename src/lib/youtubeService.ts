@@ -21,11 +21,27 @@ export interface YouTubeVideoStats {
   videoId: string;
   viewCount: number;
   formattedViews: string;
+  duration?: string;
   likeCount?: number;
   commentCount?: number;
   title?: string;
   publishedAt?: string;
+  publishDate?: string;
   lastUpdated: string;
+}
+
+/**
+ * Format ISO 8601 duration e.g. PT14M28S -> "14:28", PT9M50S -> "09:50"
+ */
+export function formatIsoDuration(durationStr?: string): string {
+  if (!durationStr) return '10:00';
+  const match = durationStr.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!match) return '10:00';
+  const h = match[1] ? parseInt(match[1], 10) : 0;
+  const m = match[2] ? parseInt(match[2], 10) : 0;
+  const s = match[3] ? parseInt(match[3], 10) : 0;
+  if (h > 0) return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  return `${m}:${String(s).padStart(2, '0')}`;
 }
 
 // Fallback verified view counts if API is rate-limited or restricted
@@ -158,7 +174,7 @@ export async function fetchYouTubeViewCount(
   videoId: string = YOUTUBE_FEATURED_VIDEO_ID
 ): Promise<YouTubeVideoStats> {
   const apiKey = getSecuredYouTubeApiKey();
-  const endpoint = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${encodeURIComponent(videoId)}&key=${apiKey}`;
+  const endpoint = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${encodeURIComponent(videoId)}&key=${apiKey}`;
 
   try {
     // 1. Send asynchronous GET request via Fetch API
@@ -187,10 +203,12 @@ export async function fetchYouTubeViewCount(
           videoId,
           viewCount: parsedViewCount,
           formattedViews: formatViewCountDisplay(parsedViewCount),
+          duration: formatIsoDuration(item.contentDetails?.duration),
           likeCount: parsedLikeCount,
           commentCount: item.statistics?.commentCount ? parseInt(item.statistics.commentCount, 10) : undefined,
           title: item.snippet?.title,
           publishedAt: item.snippet?.publishedAt,
+          publishDate: formatPublishedDate(item.snippet?.publishedAt),
           lastUpdated: new Date().toISOString(),
         };
 
@@ -222,6 +240,8 @@ export async function fetchYouTubeViewCount(
     videoId,
     viewCount: fallback.viewCount,
     formattedViews: fallback.formattedViews,
+    duration: '14:28',
+    publishDate: 'Oct 2024',
     lastUpdated: new Date().toISOString(),
   };
 }
@@ -239,8 +259,11 @@ async function fetchViewCountFromProxy(videoId: string): Promise<YouTubeVideoSta
           videoId,
           viewCount: data.stats.viewCount,
           formattedViews: formatViewCountDisplay(data.stats.viewCount),
+          duration: data.stats.duration || '14:28',
           likeCount: data.stats.likeCount,
           title: data.stats.title,
+          publishedAt: data.stats.publishedAt,
+          publishDate: formatPublishedDate(data.stats.publishedAt || data.stats.publishDate),
           lastUpdated: data.stats.lastUpdated || new Date().toISOString(),
         };
       }
@@ -260,7 +283,7 @@ export async function fetchBatchYouTubeViewCounts(
 ): Promise<Record<string, YouTubeVideoStats>> {
   const apiKey = getSecuredYouTubeApiKey();
   const joinedIds = videoIds.join(',');
-  const endpoint = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${joinedIds}&key=${apiKey}`;
+  const endpoint = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${joinedIds}&key=${apiKey}`;
 
   const results: Record<string, YouTubeVideoStats> = {};
 
@@ -279,9 +302,11 @@ export async function fetchBatchYouTubeViewCounts(
             videoId: item.id,
             viewCount: rawCount,
             formattedViews: formatViewCountDisplay(rawCount),
+            duration: formatIsoDuration(item.contentDetails?.duration),
             likeCount: item.statistics?.likeCount ? parseInt(item.statistics.likeCount, 10) : undefined,
             title: item.snippet?.title,
             publishedAt: item.snippet?.publishedAt,
+            publishDate: formatPublishedDate(item.snippet?.publishedAt),
             lastUpdated: new Date().toISOString(),
           };
         }
@@ -298,8 +323,11 @@ export async function fetchBatchYouTubeViewCounts(
               videoId: item.videoId,
               viewCount: item.viewCount,
               formattedViews: formatViewCountDisplay(item.viewCount),
+              duration: item.duration || '10:00',
               likeCount: item.likeCount,
               title: item.title,
+              publishedAt: item.publishedAt,
+              publishDate: formatPublishedDate(item.publishedAt || item.publishDate),
               lastUpdated: new Date().toISOString(),
             };
           }
@@ -318,6 +346,7 @@ export async function fetchBatchYouTubeViewCounts(
       videoId: id,
       viewCount: fallback.viewCount,
       formattedViews: fallback.formattedViews,
+      duration: '10:00',
       lastUpdated: new Date().toISOString(),
     };
   }

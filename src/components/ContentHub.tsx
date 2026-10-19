@@ -156,10 +156,6 @@ export const YouTubeSection: React.FC<YouTubeSectionProps> = ({ onOpenVideoModal
                     <span className="font-semibold text-slate-900 dark:text-white">
                       {formatViewCount(selectedVideo.viewCount ?? selectedVideo.views)}
                     </span>
-                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-red-50 dark:bg-red-500/15 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/30">
-                      <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"></span>
-                      SYNCED
-                    </span>
                   </span>
 
                   {selectedVideo.duration && (
