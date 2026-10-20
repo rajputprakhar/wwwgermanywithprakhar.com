@@ -229,6 +229,15 @@ html.light .brand-subtitle,
   font-weight: 500 !important;
 }
 
+/* Branding Typography in Dark Mode */
+html.dark .brand-title {
+  color: #FFFFFF !important;
+}
+
+html.dark .brand-subtitle {
+  color: #A1A1AA !important; /* zinc-400 */
+}
+
 /* Brand Link Hover in Light Mode */
 html:not(.dark) a[href="#home"]:hover .brand-title,
 html.light a[href="#home"]:hover .brand-title,

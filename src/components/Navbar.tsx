@@ -56,10 +56,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
               />
             </div>
             <div className="flex flex-col">
-              <span className="brand-title font-bold tracking-tight text-white text-base sm:text-lg transition-all">
-                germany<span className="brand-accent text-cyan-400">with</span>prakhar
+              <span className="brand-title font-bold tracking-tight text-slate-900 dark:text-white text-base sm:text-lg transition-all">
+                germany<span className="brand-accent text-cyan-600 dark:text-cyan-400 font-extrabold">with</span>prakhar
               </span>
-              <span className="brand-subtitle text-[11px] text-gray-400 font-mono hidden md:block transition-colors">
+              <span className="brand-subtitle text-[11px] text-slate-600 dark:text-zinc-400 font-mono hidden md:block transition-colors">
                 by Prakhar Rajput
               </span>
             </div>
@@ -161,10 +161,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="brand-title font-bold text-sm tracking-tight text-white">
-                      germany<span className="brand-accent text-cyan-400">with</span>prakhar
+                    <span className="brand-title font-bold text-sm tracking-tight text-slate-900 dark:text-white">
+                      germany<span className="brand-accent text-cyan-600 dark:text-cyan-400 font-extrabold">with</span>prakhar
                     </span>
-                    <span className="brand-subtitle text-[10px] text-gray-400 font-mono">
+                    <span className="brand-subtitle text-[10px] text-slate-600 dark:text-zinc-400 font-mono">
                       by Prakhar Rajput
                     </span>
                   </div>

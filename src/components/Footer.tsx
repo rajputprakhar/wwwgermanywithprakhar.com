@@ -109,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({ onBookCallClick }) => {
                 <span className="brand-title font-bold text-lg text-slate-900 dark:text-white tracking-tight transition-all">
                   germany<span className="brand-accent text-cyan-600 dark:text-cyan-400">with</span>prakhar
                 </span>
-                <span className="brand-subtitle block text-xs font-mono text-slate-500 dark:text-gray-400 transition-colors">
+                <span className="brand-subtitle block text-xs font-mono text-slate-600 dark:text-zinc-400 transition-colors">
                   by Prakhar Rajput • CS @ University of Bremen
                 </span>
               </div>
