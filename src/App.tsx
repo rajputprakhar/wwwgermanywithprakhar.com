@@ -9,6 +9,7 @@ import { Hero } from './components/Hero';
 import { AboutBento } from './components/AboutBento';
 import { Consulting } from './components/Consulting';
 import { StudentTools } from './components/StudentTools';
+import { EssentialDocumentsChecklist } from './components/EssentialDocumentsChecklist';
 import { YouTubeSection, BlogSection } from './components/ContentHub';
 import { ResourcesToolkit } from './components/ResourcesToolkit';
 import { FaqSection } from './components/FaqSection';
@@ -169,7 +170,10 @@ export default function App() {
           {/* 4. Interactive Student Calculators (Bavarian Formula, Monthly Cost of Living, Profile Readiness) */}
           <StudentTools onBookCallClick={() => handleOpenBooking()} />
 
-          {/* 5. Featured YouTube Video: Life in Germany & Tech */}
+          {/* 5. Essential Documents Checklist (APS, Blocked Account, Health Insurance, PDF Export) */}
+          <EssentialDocumentsChecklist />
+
+          {/* 6. Featured YouTube Video: Life in Germany & Tech */}
           <YouTubeSection onOpenVideoModal={() => setIsVideoModalOpen(true)} />
 
           {/* 6. Student Toolkit: Essential Settling & Banking Services */}

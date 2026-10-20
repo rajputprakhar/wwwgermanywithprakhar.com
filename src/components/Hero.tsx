@@ -57,19 +57,22 @@ export const Hero: React.FC<HeroProps> = ({ onBookCallClick, onWatchVideoClick }
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
-              {/* Primary CTA */}
+              {/* Primary CTA: Modern Layered Glassmorphic Tactile Elevation */}
               <motion.button
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onBookCallClick}
                 id="hero-primary-book-btn"
-                className="relative group overflow-hidden rounded-xl p-[1.5px] focus:outline-none"
+                className="primary-glass-cta relative group rounded-xl p-[1px] focus:outline-none transition-all duration-200 cursor-pointer"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-xl blur-[3px] opacity-80 group-hover:opacity-100 transition-opacity" />
-                <div className="relative px-7 py-3.5 rounded-[10.5px] bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-xl shadow-indigo-600/30 group-hover:shadow-indigo-500/50 transition-all">
-                  <Calendar className="w-4 h-4 text-cyan-200" />
-                  <span>Book a Consultation</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                {/* Soft diffused colored glow underneath button (replaces heavy drop shadow) */}
+                <span className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/40 via-blue-500/40 to-cyan-500/30 rounded-xl blur-md opacity-70 group-hover:opacity-100 group-hover:blur-lg transition-all duration-300" />
+                
+                {/* Modern UI Layering: Glassmorphism, backdrop-blur, semi-transparent bg, 1px translucent highlight edge, and tactile inner shadow */}
+                <div className="relative px-7 py-3.5 rounded-xl bg-slate-900/95 dark:bg-indigo-600/85 hover:bg-slate-900 dark:hover:bg-indigo-600 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 backdrop-blur-md border border-white/30 dark:border-white/25 shadow-md shadow-indigo-600/20 dark:shadow-indigo-500/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-200">
+                  <Calendar className="w-4 h-4 text-cyan-300 dark:text-cyan-200 shrink-0" />
+                  <span className="text-white font-bold tracking-tight">Book a Consultation</span>
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-200 ease-out shrink-0" />
                 </div>
               </motion.button>
 

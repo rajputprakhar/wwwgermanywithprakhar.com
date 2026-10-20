@@ -12,6 +12,7 @@ import {
   Award, 
   Clock, 
   ArrowUpRight, 
+  ArrowRight,
   Play, 
   Pause, 
   MapPin, 
@@ -560,10 +561,10 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onBook
                     setSelectedStory(null);
                     onBookCallClick();
                   }}
-                  className="w-full sm:w-auto flex-1 px-5 py-3 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-black font-bold text-sm transition-all cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto flex-1 px-5 py-3 rounded-xl bg-indigo-600/95 hover:bg-indigo-600 text-white font-bold text-sm transition-all duration-200 ease-out backdrop-blur-md hover:scale-105 active:scale-[0.98] border border-white/25 shadow-md shadow-indigo-600/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] cursor-pointer flex items-center justify-center gap-2 group/cta"
                 >
                   <span>Book Call with Prakhar on Topmate</span>
-                  <ArrowUpRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 text-white group-hover/cta:translate-x-1 transition-transform duration-200" />
                 </button>
                 <button
                   onClick={() => setSelectedStory(null)}

@@ -24,7 +24,7 @@ export const Consulting: React.FC<ConsultingProps> = () => {
   const topmateProfileUrl = PERSONAL_INFO.socials.topmate || 'https://topmate.io/prakhar_rajput/';
 
   return (
-    <section id="consulting" className="relative py-24 bg-slate-50 dark:bg-[#090A0F] overflow-hidden border-t border-slate-200 dark:border-white/[0.06] transition-colors duration-200">
+    <section id="consulting" className="relative py-24 bg-[#FAF8F5] dark:bg-[#0E1017] overflow-hidden border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-200">
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -32,8 +32,8 @@ export const Consulting: React.FC<ConsultingProps> = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/25 text-xs font-mono text-indigo-700 dark:text-indigo-300 mb-4">
-            <Zap className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/25 text-xs font-mono text-indigo-700 dark:text-indigo-300 mb-4 shadow-xs">
+            <Zap className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
             <span>Official Booking Menu</span>
           </div>
 
@@ -41,13 +41,13 @@ export const Consulting: React.FC<ConsultingProps> = () => {
             Consulting &amp; Strategy Calls
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
             Direct, 1-on-1 guidance and group seminars with Prakhar. All scheduling, live calendar slots, and Google Meet invites are powered directly by Topmate.
           </p>
         </div>
 
         {/* Topmate Verified Profile Banner */}
-        <div className="max-w-4xl mx-auto mb-12 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#0E111C]/90 border border-slate-200 dark:border-white/[0.08] backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm dark:shadow-xl">
+        <div className="max-w-4xl mx-auto mb-12 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#151926]/90 border border-slate-200 dark:border-slate-800/80 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm dark:shadow-md">
           <div className="flex items-center gap-3.5 text-left w-full sm:w-auto">
             <a
               id="consulting-avatar-instagram-link"
@@ -70,7 +70,7 @@ export const Consulting: React.FC<ConsultingProps> = () => {
                   }
                 }}
               />
-              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-[#0C0E17]" />
+              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-[#151926]" />
             </a>
             <div>
               <div className="flex items-center gap-2">
@@ -79,7 +79,7 @@ export const Consulting: React.FC<ConsultingProps> = () => {
                   TOPMATE VERIFIED
                 </span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-gray-400 font-mono mt-0.5">
+              <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 font-mono mt-0.5">
                 <span className="text-amber-600 dark:text-amber-400 flex items-center gap-1 font-bold">
                   <Star className="w-3.5 h-3.5 fill-current" /> 5.0
                 </span>
@@ -96,10 +96,10 @@ export const Consulting: React.FC<ConsultingProps> = () => {
             target="_blank"
             rel="noopener noreferrer"
             id="topmate-profile-link-btn"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.05] dark:hover:bg-white/[0.1] border border-slate-300 dark:border-white/10 hover:border-indigo-500/40 text-xs font-mono text-slate-900 dark:text-white transition-all group shrink-0 shadow-xs"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl backdrop-blur-md bg-slate-100 hover:bg-slate-200 dark:bg-[#1E2338] dark:hover:bg-[#252D48] border border-slate-300 dark:border-white/10 hover:border-indigo-500/40 text-xs font-mono text-slate-900 dark:text-slate-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] shadow-xs transition-all group shrink-0 hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>topmate.io/prakhar_rajput</span>
-            <ExternalLink className="w-3.5 h-3.5 text-slate-500 dark:text-gray-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-transform" />
+            <ExternalLink className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 group-hover:translate-x-1 transition-transform duration-200" />
           </a>
         </div>
 
@@ -121,10 +121,10 @@ export const Consulting: React.FC<ConsultingProps> = () => {
                 id={`consulting-tier-card-${tier.id}`}
                 className={`relative rounded-3xl p-[1.5px] flex flex-col group cursor-pointer transition-all duration-300 ${
                   isPopular
-                    ? 'bg-gradient-to-b from-amber-400 via-indigo-500 to-cyan-500 shadow-xl shadow-indigo-950/20 dark:shadow-indigo-950/80'
+                    ? 'bg-gradient-to-b from-amber-400 via-indigo-500 to-cyan-500 shadow-xl shadow-indigo-950/20 dark:shadow-indigo-950/60'
                     : isSeminar
-                    ? 'bg-gradient-to-b from-purple-400/60 via-slate-200 to-indigo-400/40 dark:from-purple-500/40 dark:via-white/10 dark:to-indigo-500/30 hover:shadow-lg dark:hover:shadow-purple-950/50'
-                    : 'bg-gradient-to-b from-slate-200 via-slate-100 to-transparent dark:from-white/15 dark:via-white/5 dark:to-transparent hover:shadow-lg dark:hover:shadow-indigo-950/40'
+                    ? 'bg-gradient-to-b from-purple-400/60 via-slate-200 to-indigo-400/40 dark:from-purple-500/40 dark:via-white/10 dark:to-indigo-500/30 hover:shadow-lg dark:hover:shadow-purple-950/40'
+                    : 'bg-gradient-to-b from-slate-200 via-slate-100 to-transparent dark:from-white/15 dark:via-white/5 dark:to-transparent hover:shadow-lg dark:hover:shadow-indigo-950/30'
                 }`}
               >
                 {/* Popularity / Limit Ribbon Badge */}
@@ -143,12 +143,12 @@ export const Consulting: React.FC<ConsultingProps> = () => {
                 )}
 
                 {/* Main Card Body */}
-                <div className="h-full w-full rounded-[22px] bg-white dark:bg-[#0C0E17] p-7 sm:p-8 flex flex-col justify-between backdrop-blur-2xl border border-slate-200 dark:border-white/[0.06] group-hover:border-indigo-400 dark:group-hover:border-white/20 transition-colors shadow-xs">
+                <div className="h-full w-full rounded-[22px] bg-white dark:bg-[#151926] p-7 sm:p-8 flex flex-col justify-between backdrop-blur-2xl border border-slate-200 dark:border-slate-800/80 group-hover:border-indigo-400 dark:group-hover:border-indigo-500/50 transition-colors shadow-sm dark:shadow-md">
                   <div>
                     {/* Top Tier Header & Meta */}
                     <div className="flex items-start justify-between gap-2 mb-4">
                       <div>
-                        <span className="text-[11px] font-mono text-cyan-700 dark:text-cyan-400 tracking-wider uppercase font-semibold">
+                        <span className="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 tracking-wider uppercase font-semibold">
                           {isSeminar ? 'Group Workshop' : '1-on-1 Mentorship'}
                         </span>
                         <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
@@ -156,8 +156,8 @@ export const Consulting: React.FC<ConsultingProps> = () => {
                         </h3>
                       </div>
 
-                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] text-xs font-mono text-slate-700 dark:text-gray-300">
-                        <Clock className="w-3.5 h-3.5 text-slate-500 dark:text-gray-400" />
+                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-[#1E2338] border border-slate-200 dark:border-white/10 text-xs font-mono text-slate-700 dark:text-slate-300">
+                        <Clock className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
                         <span>{tier.duration}</span>
                       </div>
                     </div>
@@ -167,20 +167,20 @@ export const Consulting: React.FC<ConsultingProps> = () => {
                       <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-mono tracking-tight">
                         {tier.price}
                       </span>
-                      <span className="text-xs text-slate-500 dark:text-gray-400 font-mono">
+                      <span className="text-xs text-slate-600 dark:text-slate-400 font-mono">
                         / session via Topmate
                       </span>
                     </div>
 
                     {/* Exact User Provided Description */}
-                    <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-6 font-normal">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 font-normal">
                       {tier.description}
                     </p>
 
                     {/* Deliverables / Scope Bullet Points */}
                     <div className="space-y-2.5 mb-8">
                       {tier.deliverables.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-gray-300 leading-snug">
+                        <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 leading-snug">
                           <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${
                             isPopular ? 'text-amber-500 dark:text-amber-400' : isSeminar ? 'text-purple-600 dark:text-purple-400' : 'text-emerald-600 dark:text-emerald-400'
                           }`} />
@@ -190,25 +190,25 @@ export const Consulting: React.FC<ConsultingProps> = () => {
                     </div>
                   </div>
 
-                  {/* Bottom Redirect Button */}
+                  {/* Bottom Redirect Button (Modernized with Glassmorphism, Tactile Elevation, and WCAG Contrast) */}
                   <div>
                     <div
-                      className={`w-full py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide flex items-center justify-center gap-2 shadow-md transition-all ${
+                      className={`consulting-card-cta-btn w-full py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide flex items-center justify-center gap-2.5 transition-all duration-200 ease-out backdrop-blur-md group-hover:scale-105 active:scale-[0.98] cursor-pointer ${
                         isPopular
-                          ? 'bg-gradient-to-r from-amber-500 via-indigo-600 to-cyan-500 group-hover:from-amber-400 group-hover:to-cyan-400 text-white shadow-indigo-900/30'
+                          ? 'cta-popular bg-indigo-700 hover:bg-indigo-800 text-white dark:bg-indigo-600/90 dark:hover:bg-indigo-500/95 border border-white/30 dark:border-white/20 shadow-md shadow-indigo-700/25 dark:shadow-indigo-500/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)]'
                           : isSeminar
-                          ? 'bg-purple-600 hover:bg-purple-700 text-white shadow-purple-900/30'
-                          : 'bg-slate-900 hover:bg-slate-800 text-white dark:bg-white/[0.08] dark:hover:bg-white/[0.15] dark:text-white border border-slate-800 dark:border-white/10 dark:group-hover:border-white/30'
+                          ? 'cta-seminar bg-purple-800 hover:bg-purple-900 text-white dark:bg-purple-600/90 dark:hover:bg-purple-500/95 border border-white/30 dark:border-white/20 shadow-md shadow-purple-800/25 dark:shadow-purple-500/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]'
+                          : 'cta-standard bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800/90 dark:hover:bg-slate-700/90 border border-slate-700/80 dark:border-white/15 shadow-md shadow-slate-900/15 dark:shadow-black/25 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]'
                       }`}
                     >
-                      <Calendar className="w-4 h-4 text-white/90" />
-                      <span>
+                      <Calendar className="w-4 h-4 text-white shrink-0" />
+                      <span className="text-white font-bold tracking-tight">
                         {isSeminar ? 'Reserve Seat on Topmate' : 'Book on Topmate'}
                       </span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-200 ease-out shrink-0" />
                     </div>
 
-                    <div className="mt-2.5 text-center text-[11px] font-mono text-slate-500 dark:text-gray-500">
+                    <div className="mt-2.5 text-center text-[11px] font-mono text-slate-500 dark:text-slate-400">
                       Redirects to topmate.io/prakhar_rajput
                     </div>
                   </div>

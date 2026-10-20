@@ -6,17 +6,18 @@
 /* CSS CUSTOM PROPERTIES / THEME TOKENS                                      */
 /* ========================================================================= */
 :root {
-  --bg-page: #08090D;
-  --bg-card: #0E111C;
-  --bg-elevated: #121625;
+  --bg-page: #0B0F19;
+  --bg-card: #131826;
+  --bg-elevated: #1B2236;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.15);
-  --text-primary: #F3F4F6;
-  --text-secondary: #9CA3AF;
-  --text-muted: #6B7280;
-  --brand-cyan: #22D3EE;
-  --brand-cyan-accessible: #06B6D4;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --brand-cyan: #38BDF8;
+  --brand-cyan-accessible: #0EA5E9;
   --brand-indigo: #6366F1;
+  --brand-purple: #A78BFA;
   --logo-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
   --logo-border: rgba(255, 255, 255, 0.12);
   --logo-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -33,10 +34,11 @@ html:not(.dark),
   --border-strong: #CBD5E1;
   --text-primary: #0F172A;
   --text-secondary: #334155;
-  --text-muted: #64748B;
+  --text-muted: #475569;
   --brand-cyan: #0284C7;
   --brand-cyan-accessible: #0369A1;
   --brand-indigo: #4F46E5;
+  --brand-purple: #7C3AED;
   --logo-bg: linear-gradient(135deg, #0A0F1D 0%, #151C2E 100%);
   --logo-border: #334155;
   --logo-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.25);
@@ -45,10 +47,26 @@ html:not(.dark),
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #08090D;
-  color: #F3F4F6;
+  background-color: #0B0F19;
+  color: #F8FAFC;
   overflow-x: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Dark Mode Readability & Contrast Enhancements */
+html.dark .text-gray-400,
+html.dark .text-slate-400 {
+  color: #94A3B8;
+}
+
+html.dark .text-gray-300,
+html.dark .text-slate-300 {
+  color: #CBD5E1;
+}
+
+html.dark .text-gray-500,
+html.dark .text-slate-500 {
+  color: #94A3B8;
 }
 
 .font-mono {
@@ -649,10 +667,10 @@ html.light h5:not([class*="bg-clip-text"]),
 }
 
 /* Text white overrides (protecting button text, badges, and gradient fills) */
-html:not(.dark) .text-white:not(button *):not(button):not([class*="bg-gradient"]):not([class*="from-"]):not([class*="bg-indigo-"]):not([class*="bg-blue-"]):not([class*="bg-red-"]):not([class*="bg-emerald-"]):not(.keep-white):not([class*="bg-[#FF0000]"] *),
-html.light .text-white:not(button *):not(button):not([class*="bg-gradient"]):not([class*="from-"]):not([class*="bg-indigo-"]):not([class*="bg-blue-"]):not([class*="bg-red-"]):not([class*="bg-emerald-"]):not(.keep-white):not([class*="bg-[#FF0000]"] *),
-[data-theme="light"] .text-white:not(button *):not(button):not([class*="bg-gradient"]):not([class*="from-"]):not([class*="bg-indigo-"]):not([class*="bg-blue-"]):not([class*="bg-red-"]):not([class*="bg-emerald-"]):not(.keep-white):not([class*="bg-[#FF0000]"] *) {
-  color: #0F172A !important;
+html:not(.dark) .text-white:not(button *):not(button):not(.consulting-card-cta-btn):not(.consulting-card-cta-btn *):not(.primary-glass-cta):not(.primary-glass-cta *):not([class*="bg-gradient"]):not([class*="from-"]):not([class*="bg-indigo-"]):not([class*="bg-purple-"]):not([class*="bg-slate-900"]):not([class*="bg-blue-"]):not([class*="bg-red-"]):not([class*="bg-emerald-"]):not(.keep-white):not([class*="bg-[#FF0000]"] *),
+html.light .text-white:not(button *):not(button):not(.consulting-card-cta-btn):not(.consulting-card-cta-btn *):not(.primary-glass-cta):not(.primary-glass-cta *):not([class*="bg-gradient"]):not([class*="from-"]):not([class*="bg-indigo-"]):not([class*="bg-purple-"]):not([class*="bg-slate-900"]):not([class*="bg-blue-"]):not([class*="bg-red-"]):not([class*="bg-emerald-"]):not(.keep-white):not([class*="bg-[#FF0000]"] *),
+[data-theme="light"] .text-white:not(button *):not(button):not(.consulting-card-cta-btn):not(.consulting-card-cta-btn *):not(.primary-glass-cta):not(.primary-glass-cta *):not([class*="bg-gradient"]):not([class*="from-"]):not([class*="bg-indigo-"]):not([class*="bg-purple-"]):not([class*="bg-slate-900"]):not([class*="bg-blue-"]):not([class*="bg-red-"]):not([class*="bg-emerald-"]):not(.keep-white):not([class*="bg-[#FF0000]"] *) {
+  color: #FFFFFF !important;
 }
 
 html:not(.dark) .text-gray-200,
@@ -1028,6 +1046,73 @@ html:not(.dark) [id^="consulting-tier-card-"] p,
 html.light [id^="consulting-tier-card-"] p,
 [data-theme="light"] [id^="consulting-tier-card-"] p {
   color: #475569 !important;
+}
+
+/* Enforce WCAG contrast standards on Topmate Consulting CTA buttons in Light & Dark modes */
+/* Default / Standard tier light mode contrast token: Deep high-contrast dark slate with crisp white text */
+html:not(.dark) .consulting-card-cta-btn,
+html.light .consulting-card-cta-btn,
+[data-theme="light"] .consulting-card-cta-btn {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+}
+
+html:not(.dark) .consulting-card-cta-btn:hover,
+html.light .consulting-card-cta-btn:hover,
+[data-theme="light"] .consulting-card-cta-btn:hover {
+  background-color: #1E293B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 20px -2px rgba(15, 23, 42, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Popular tier light mode contrast token: Bold high-contrast Indigo with crisp white text */
+html:not(.dark) .consulting-card-cta-btn.cta-popular,
+html.light .consulting-card-cta-btn.cta-popular,
+[data-theme="light"] .consulting-card-cta-btn.cta-popular {
+  background-color: #4338CA !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 14px -2px rgba(67, 56, 202, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+}
+
+html:not(.dark) .consulting-card-cta-btn.cta-popular:hover,
+html.light .consulting-card-cta-btn.cta-popular:hover,
+[data-theme="light"] .consulting-card-cta-btn.cta-popular:hover {
+  background-color: #3730A3 !important;
+  color: #FFFFFF !important;
+}
+
+/* Seminar tier light mode contrast token: Bold high-contrast Purple with crisp white text */
+html:not(.dark) .consulting-card-cta-btn.cta-seminar,
+html.light .consulting-card-cta-btn.cta-seminar,
+[data-theme="light"] .consulting-card-cta-btn.cta-seminar {
+  background-color: #6B21A8 !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 14px -2px rgba(107, 33, 168, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+}
+
+html:not(.dark) .consulting-card-cta-btn.cta-seminar:hover,
+html.light .consulting-card-cta-btn.cta-seminar:hover,
+[data-theme="light"] .consulting-card-cta-btn.cta-seminar:hover {
+  background-color: #581C87 !important;
+  color: #FFFFFF !important;
+}
+
+/* Universal high-contrast text guarantee for Consulting CTA across both themes */
+.consulting-card-cta-btn,
+.consulting-card-cta-btn *,
+.consulting-card-cta-btn span,
+.consulting-card-cta-btn svg,
+html:not(.dark) [id^="consulting-tier-card-"] .consulting-card-cta-btn,
+html:not(.dark) [id^="consulting-tier-card-"] .consulting-card-cta-btn *,
+html.light [id^="consulting-tier-card-"] .consulting-card-cta-btn,
+html.light [id^="consulting-tier-card-"] .consulting-card-cta-btn *,
+[data-theme="light"] [id^="consulting-tier-card-"] .consulting-card-cta-btn,
+[data-theme="light"] [id^="consulting-tier-card-"] .consulting-card-cta-btn * {
+  color: #FFFFFF !important;
 }
 
 /* ------------------------------------------------------------------------- */

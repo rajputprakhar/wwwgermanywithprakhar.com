@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, Video, BookOpen, Layers, Menu, X, ArrowUpRight, GraduationCap, Globe2, Calculator } from 'lucide-react';
+import { Calendar, Video, BookOpen, Layers, Menu, X, ArrowUpRight, ArrowRight, GraduationCap, Globe2, Calculator } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/siteData';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -93,19 +93,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
             {/* Theme Toggle (Desktop) */}
             <ThemeToggle id="nav-theme-toggle-desktop" />
 
-            {/* Glowing CTA Button */}
+            {/* Glowing CTA Button (Modern Layered Glassmorphic Tactile Elevation) */}
             <motion.button
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               onClick={onBookCallClick}
               id="nav-book-call-btn"
-              className="relative group overflow-hidden rounded-xl p-[1px] focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+              className="relative group rounded-xl p-[1px] focus:outline-none focus:ring-2 focus:ring-indigo-500/60 cursor-pointer"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-xl blur-[2px] opacity-75 group-hover:opacity-100 transition-opacity animate-pulse" />
-              <div className="relative px-4 py-2 rounded-[11px] bg-slate-900 hover:bg-slate-800 text-white dark:bg-[#0A0C14] dark:hover:bg-[#0D101C] text-xs font-semibold flex items-center gap-2 border border-slate-700/80 dark:border-white/20 transition-all shadow-lg shadow-indigo-900/30">
+              <span className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/30 to-cyan-500/30 rounded-xl blur-xs opacity-60 group-hover:opacity-100 transition-opacity" />
+              <div className="relative px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-900/90 dark:hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2 backdrop-blur-md border border-slate-700/80 dark:border-white/20 shadow-md shadow-indigo-900/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)] transition-all">
                 <Calendar className="w-3.5 h-3.5 text-cyan-300 dark:text-cyan-400" />
                 <span className="text-white font-semibold">Book a Call</span>
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <ArrowRight className="w-3.5 h-3.5 text-white/80 group-hover:translate-x-1 group-hover:text-white transition-transform duration-200 ease-out" />
               </div>
             </motion.button>
           </div>
@@ -117,10 +117,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCallClick }) => {
 
             <button
               onClick={onBookCallClick}
-              className="px-3.5 py-2 min-h-[40px] rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 flex items-center gap-1.5"
+              className="px-3.5 py-2 min-h-[40px] rounded-xl bg-indigo-600/90 hover:bg-indigo-600 dark:bg-indigo-600/85 dark:hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 backdrop-blur-md border border-white/25 dark:border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-1.5 group cursor-pointer"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Book Call</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

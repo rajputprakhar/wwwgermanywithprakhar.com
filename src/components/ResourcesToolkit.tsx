@@ -11,7 +11,8 @@ import {
   FileText,
   Copy,
   Check,
-  Tag
+  Tag,
+  ArrowRight
 } from 'lucide-react';
 import { TOOLKIT_RESOURCES } from '../data/siteData';
 
@@ -189,20 +190,20 @@ export const ResourcesToolkit: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Dedicated Get Started / Action Link Button */}
+                  {/* Dedicated Get Started / Action Link Button (Modern Layered Glassmorphic Tactile Elevation) */}
                   <a
                     href={targetUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     id={isExpatrio ? 'expatrio-get-started-btn' : `toolkit-link-${item.id}`}
-                    className={`w-full py-2.5 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-sm group/btn cursor-pointer ${
+                    className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-out backdrop-blur-md hover:scale-105 active:scale-[0.98] group/btn cursor-pointer ${
                       isExpatrio
-                        ? 'bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white shadow-md shadow-indigo-600/25'
-                        : 'bg-slate-900 hover:bg-slate-800 text-white dark:bg-white/[0.06] dark:hover:bg-gradient-to-r dark:hover:from-cyan-600 dark:hover:to-indigo-600 border border-slate-700 dark:border-white/10 dark:hover:border-transparent'
+                        ? 'bg-indigo-600/90 hover:bg-indigo-600 dark:bg-indigo-600/85 dark:hover:bg-indigo-500 text-white border border-white/25 dark:border-white/20 shadow-md shadow-indigo-600/20 dark:shadow-indigo-500/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)]'
+                        : 'bg-slate-900 hover:bg-slate-800 text-white dark:bg-white/[0.08] dark:hover:bg-white/[0.14] dark:text-white border border-slate-700/60 dark:border-white/15 shadow-sm shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]'
                     }`}
                   >
                     <span>{isExpatrio ? 'Get Started on Expatrio' : 'Open Official Service'}</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-white/80 group-hover/btn:text-white transition-colors" />
+                    <ArrowRight className="w-3.5 h-3.5 text-white/90 group-hover/btn:translate-x-1 group-hover/btn:text-white transition-transform duration-200" />
                   </a>
                 </div>
               </motion.div>
@@ -258,18 +259,18 @@ export const ResourcesToolkit: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action Area: Download CTA Button */}
+              {/* Action Area: Download CTA Button (Modern Layered Glassmorphic Tactile Elevation) */}
               <div className="pt-4 border-t border-indigo-100 dark:border-white/[0.08]">
                 <a
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="download-tech-gear-list-btn"
-                  className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-600/25 group/btn cursor-pointer"
+                  className="w-full py-3 px-4 rounded-xl bg-indigo-600/90 hover:bg-indigo-600 dark:bg-indigo-600/85 dark:hover:bg-indigo-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-out backdrop-blur-md hover:scale-105 active:scale-[0.98] border border-white/25 dark:border-white/20 shadow-md shadow-indigo-600/20 dark:shadow-indigo-500/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] group/btn cursor-pointer"
                 >
-                  <Download className="w-4 h-4 group-hover/btn:-translate-y-0.5 transition-transform" />
+                  <Download className="w-4 h-4 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
                   <span>Download My Complete Tech &amp; Gear List</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-indigo-200 group-hover/btn:text-white transition-colors" />
+                  <ArrowRight className="w-3.5 h-3.5 text-white/90 group-hover/btn:translate-x-1 transition-transform duration-200" />
                 </a>
               </div>
             </motion.div>

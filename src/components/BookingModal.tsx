@@ -259,10 +259,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 <div className="pt-3">
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-xl shadow-indigo-900/40 transition-all cursor-pointer"
+                    className="w-full py-3.5 rounded-xl bg-indigo-600/90 hover:bg-indigo-600 text-white font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 ease-out backdrop-blur-md hover:scale-105 active:scale-[0.98] border border-white/25 shadow-md shadow-indigo-600/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] cursor-pointer group"
                   >
                     <span>Reserve Slot &amp; Open Topmate Checkout</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-200" />
                   </button>
                 </div>
               </form>
@@ -290,10 +290,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   href="https://topmate.io/prakhar_rajput/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-indigo-600/90 hover:bg-indigo-600 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all duration-200 ease-out backdrop-blur-md hover:scale-105 active:scale-[0.98] border border-white/25 shadow-md shadow-indigo-600/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] group"
                 >
                   <span>Complete Payment on Topmate.io</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-200" />
                 </a>
                 <button
                   onClick={onClose}
